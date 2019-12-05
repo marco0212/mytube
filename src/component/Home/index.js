@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Home(props) {
   const { HomeVideos } = props;
@@ -13,9 +14,11 @@ export default function Home(props) {
           const videoId = video.id;
           return (
             <li key={videoId}>
-              <img src={thumbnail} alt={title} />
-              <h3>{title}</h3>
-              <p>{description}</p>
+              <Link to={`/watch/${videoId}`}>
+                <img src={thumbnail} alt={title} />
+                <h3>{title}</h3>
+                <p>{description}</p>
+              </Link>
             </li>
           );
         })}
