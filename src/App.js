@@ -4,19 +4,25 @@ import Home from "./component/Home";
 import Search from "./component/Search";
 import Watch from "./component/Watch";
 import Header from "./component/Header";
-import { getPopularVideos } from "./functions";
+import { getPopularVideos, getVideoById } from "./functions";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       HomeVideos: [],
-      isLoading: true
+      isLoading: true,
+      currentVideo: {}
     };
   }
   componentDidMount() {
     getPopularVideos(data => {
       this.setState({ HomeVideos: data, isLoading: false });
+    });
+  }
+  setCurrentVideo(id) {
+    getVideoById(id, data => {
+      this.setState({ currentVideo: data });
     });
   }
   render() {
@@ -26,8 +32,18 @@ export default class App extends React.Component {
         <main>
           <Switch>
             <Route path="/search/:keyword" render={() => <Search />} />
-            <Route path="/watch/:id" render={props => <Watch {...props} />} />
             <Route
+              path="/watch/:id"
+              render={props => (
+                <Watch
+                  {...props}
+                  setCurrentVideo={this.setCurrentVideo.bind(this)}
+                  currentVideo={this.state.currentVideo}
+                />
+              )}
+            />
+            <Route
+              exact
               path="/"
               render={() =>
                 this.state.isLoading ? (

@@ -1,50 +1,37 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import {
-  getVideoById,
-  getYoutubeEmbedUrl,
-  getSearchedVideos
-} from "../../functions";
+import { getYoutubeEmbedUrl } from "../../functions";
 
 export default class Watch extends React.Component {
   constructor(props) {
+    window.scrollTo(0, 0);
     super(props);
     this.state = {
-      isLoading: true,
-      currentVideo: {},
-      relatedVideo: []
+      isLoaded: false
     };
     const { match } = this.props;
     this.id = match.params.id;
   }
   componentDidMount() {
-    getVideoById(this.id, data => {
-      this.setState({ currentVideo: data, isLoading: false });
-      if (!this.state.isLoading) {
-        getSearchedVideos(this.tag, data => {
-          this.setState({ relatedVideo: data });
-        });
-      }
-    });
+    if (!this.state.isLoaded) {
+      this.props.setCurrentVideo(this.id);
+      this.setState({ isLoaded: true });
+    }
   }
-  componentDidUpdate() {
-    getSearchedVideos(this.tag, data => {
-      this.setState({ relatedVideo: data });
-    });
+  componentWillUnmount() {
+    this.setState({ isLoaded: false });
   }
   render() {
-    let video, title, description, time, channelTitle, tags;
+    if (!this.props.currentVideo.snippet) {
+      return "Loading";
+    }
+    let video, title, description, time, channelTitle;
     let iframeSrc = getYoutubeEmbedUrl(this.id);
-    if (!this.state.isLoading) {
-      video = this.state.currentVideo.snippet;
+    if (this.state.isLoaded) {
+      video = this.props.currentVideo.snippet;
       title = video.title;
       description = video.description;
       time = video.publishedAt;
       channelTitle = video.channelTitle;
-      if (video.tags) {
-        tags = video.tags.slice(0, 5);
-        this.tag = tags[0];
-      }
     }
     return this.state.isLoading ? (
       "loading"
@@ -56,8 +43,8 @@ export default class Watch extends React.Component {
             <div className="frame-wrap">
               <iframe
                 src={iframeSrc}
-                width="560"
-                height="315"
+                width="730"
+                height="410"
                 title={title}
                 frameBorder="0"
                 allow="accelerometer; encrypted-media; gyroscope; picture-in-picture"
@@ -77,29 +64,8 @@ export default class Watch extends React.Component {
             </div>
             <div className="videoInfo-wrap">
               <p>{description}</p>
-              <ul className="related-tags">
-                {tags.map(tag => (
-                  <li key={tag}>
-                    <Link to={`/search/${tag}`}>{tag}</Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
-          <aside>
-            <ul>
-              {this.state.relatedVideo.map(video => {
-                console.log(video);
-                return (
-                  <li>
-                    <Link to={`/watch/${video.id.videoId}`}>
-                      {video.snippet.title}
-                    </Link>
-                  </li>
-                );
-              })}
-            </ul>
-          </aside>
         </div>
       </section>
     );
