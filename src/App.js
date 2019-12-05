@@ -26,7 +26,7 @@ export default class App extends React.Component {
         <main>
           <Switch>
             <Route path="/search/:keyword" render={() => <Search />} />
-            <Route path="/watch/:id" render={() => <Watch />} />
+            <Route path="/watch/:id" render={props => <Watch {...props} />} />
             <Route
               path="/"
               render={() =>
