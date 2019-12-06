@@ -9,9 +9,9 @@ export default function App() {
   return (
     <Router>
       <Switch>
-        <Route path="/search/:keyword" render={() => <Search />} />
-        <Route path="/watch/:id" render={() => <Watch />} />
-        <Route exact={true} path="/" render={() => <Home />} />
+        <Route path="/search/:keyword" component={Search} />
+        <Route path="/watch/:id" component={Watch} />
+        <Route exact={true} path="/" component={Home} />
       </Switch>
     </Router>
   );
