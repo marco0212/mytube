@@ -4,7 +4,6 @@ import { getYoutubeEmbedUrl } from "../../functions";
 
 export default function Watch(props) {
   const id = props.match.params.id;
-  console.log(props.location.state.snippet);
   const { title, description } = props.location.state.snippet;
   return (
     <Fragment>

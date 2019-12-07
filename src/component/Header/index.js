@@ -1,9 +1,21 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
 export default class Header extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputText: ""
+    };
+  }
+  handlerChange(e) {
+    const typingText = e.target.value;
+    this.setState({
+      inputText: typingText
+    });
+  }
   render() {
     return (
       <header className="sticky-top bg-danger py-2 shadow">
@@ -23,12 +35,19 @@ export default class Header extends React.Component {
                   className="form-control"
                   placeholder="Search"
                   aria-label="Search"
+                  onChange={this.handlerChange.bind(this)}
                 />
-                <div className="input-group-append">
+                <Link
+                  className="input-group-append"
+                  to={{
+                    pathname: `/search/${this.state.inputText}`,
+                    state: { id: this.state.inputText }
+                  }}
+                >
                   <span className="input-group-text">
                     <FontAwesomeIcon icon={faSearch} size="lg" />
                   </span>
-                </div>
+                </Link>
               </div>
             </div>
           </div>
