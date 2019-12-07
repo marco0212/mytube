@@ -9,7 +9,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 export default function App() {
   return (
     <Router>
-      <Header />
+      <Route path="/" component={Header} />
       <Switch>
         <Route path="/search/:keyword" component={Search} />
         <Route path="/watch/:id" component={Watch} />
