@@ -23,7 +23,7 @@ export default class Home extends React.Component {
   }
   getPopularVideos = () => {
     getPopularVideos(data => {
-      this.setState({ isLoading: false /*videoData: data*/ });
+      this.setState({ isLoading: false, videoData: data });
     });
   };
   componentDidMount() {
