@@ -5,12 +5,24 @@ export default class Home extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      videoData: Array(9).fill({
+        id: "-FlxM_0S2lA",
+        snippet: {
+          title: "lofi hip hop radio - beats to sleep/chill to",
+          thumbnails: {
+            default: {
+              url:
+                "https://i.ytimg.com/vi/EcEMX-63PKY/hq720_live.jpg?sqp=CJiXre8F-oaymwEZCNAFEJQDSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLDGywjxOG5W1LcJ9yuYIbLOx7Ce9A"
+            }
+          }
+        }
+      })
     };
   }
   getPopularVideos = () => {
     getPopularVideos(data => {
-      this.setState({ isLoading: false, videoData: data });
+      this.setState({ isLoading: false /*videoData: data*/ });
     });
   };
   componentDidMount() {
