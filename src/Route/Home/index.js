@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { getPopularVideos } from "../../functions";
 export default class Home extends React.Component {
   constructor(props) {
@@ -24,8 +25,10 @@ export default class Home extends React.Component {
         {this.state.videoData.map(data => {
           return (
             <li>
-              <img src={data.snippet.thumbnails.default.url} />
-              <p>{data.snippet.title}</p>
+              <Link to={`/watch/${data.id}`}>
+                <img src={data.snippet.thumbnails.default.url} />
+                <p>{data.snippet.title}</p>
+              </Link>
             </li>
           );
         })}
