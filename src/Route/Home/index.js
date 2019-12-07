@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { getPopularVideos } from "../../functions";
+import Loading from "../../component/Loading";
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -31,7 +32,7 @@ export default class Home extends React.Component {
   render() {
     const { isLoading } = this.state;
     return isLoading ? (
-      "Loading..."
+      <Loading />
     ) : (
       <ul>
         {this.state.videoData.map(data => {
