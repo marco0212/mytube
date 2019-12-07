@@ -17,14 +17,33 @@ export default class Header extends React.Component {
   }
   render() {
     return (
-      <header>
-        <h1>
-          <Link to="/">mytube</Link>
-        </h1>
-        <form onSubmit={this.handlerOnSubmit.bind(this)}>
-          <input onChange={this.handlerOnChange.bind(this)} />
-          <button>검색</button>
-        </form>
+      <header className="py-3 bg-dark sticky-top">
+        <div className="container">
+          <div className="row">
+            <div className="col-12">
+              <div className="d-flex justify-content-between">
+                <h1 className="logo mr-sm-3 my-auto">
+                  <Link to="/" className="text-white">
+                    MYTUBE
+                  </Link>
+                </h1>
+                <form
+                  className="d-flex my-auto"
+                  onSubmit={this.handlerOnSubmit.bind(this)}
+                >
+                  <input
+                    className="form-control form-control-lg mr-3 mr-sm-1"
+                    placeholder="Search"
+                    onChange={this.handlerOnChange.bind(this)}
+                  />
+                  <button className="btn btn-outline-success btn-lg">
+                    Search
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
       </header>
     );
   }
