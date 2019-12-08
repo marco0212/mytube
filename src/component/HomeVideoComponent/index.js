@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Truncate from "react-truncate";
 export default function HomeVideoComponent({
   id,
   title,
@@ -27,7 +28,9 @@ export default function HomeVideoComponent({
           <div className="video-info-area">
             <h5 className="card-title">
               <Link to={`/watch/${id}`} className="text-dark">
-                {title}
+                <Truncate lines={2} ellipsis="...">
+                  {title}
+                </Truncate>
               </Link>
             </h5>
             <h6 className="mb-2 text-muted">{chTitle}</h6>
