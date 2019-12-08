@@ -25,10 +25,14 @@ export default class Home extends React.Component {
     ) : (
       <div className="container pt-4 home-wrapper">
         <div className="row">
+          <div className="col-12">
+            <h3 className="mb-4">Most Popular Videos</h3>
+          </div>
           {this.state.videoData.map(data => {
             const id = data.id,
               title = data.snippet.title,
               thumbnailUrl = data.snippet.thumbnails.high.url,
+              chId = data.snippet.channelId,
               chTitle = data.snippet.channelTitle,
               time = data.snippet.publishedAt;
             return (
@@ -36,6 +40,7 @@ export default class Home extends React.Component {
                 id={id}
                 title={title}
                 thumbnailUrl={thumbnailUrl}
+                chId={chId}
                 chTitle={chTitle}
                 time={time}
                 key={id}

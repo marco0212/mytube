@@ -26,3 +26,6 @@ a:hover {
   width: 40px;
   height: 40px;
 }
+.isLoading .video-thumb {
+  background-color: silver;
+}
