@@ -1,3 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+ul,
+ol {
+  list-style: none;
+}
+img {
+  vertical-align: top;
+}
 #root {
   display: flex;
   min-height: 100vh;
@@ -5,4 +16,13 @@
 }
 a:hover {
   text-decoration: none;
+}
+.home-wrapper .video-thumb {
+  display: block;
+  padding-top: 57%;
+  background: no-repeat center center / 100% auto;
+}
+.channel-thumb-area .img-wrap {
+  width: 40px;
+  height: 40px;
 }

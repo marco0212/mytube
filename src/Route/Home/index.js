@@ -1,7 +1,7 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { getPopularVideos } from "../../functions";
 import Loading from "../../component/Loading";
+import HomeVideoComponent from "../../component/HomeVideoComponent";
+import { getPopularVideos } from "../../functions";
 export default class Home extends React.Component {
   constructor(props) {
     super(props);
@@ -23,18 +23,25 @@ export default class Home extends React.Component {
     return isLoading ? (
       <Loading />
     ) : (
-      <ul>
-        {this.state.videoData.map(data => {
-          return (
-            <li>
-              <Link to={`/watch/${data.id}`}>
-                <img src={data.snippet.thumbnails.default.url} />
-                <p>{data.snippet.title}</p>
-              </Link>
-            </li>
-          );
-        })}
-      </ul>
+      <div className="container pt-4 home-wrapper">
+        <div className="row">
+          {this.state.videoData.map(data => {
+            const id = data.id,
+              title = data.snippet.title,
+              thumbnailUrl = data.snippet.thumbnails.high.url,
+              chTitle = data.snippet.channelTitle;
+            return (
+              <HomeVideoComponent
+                id={id}
+                title={title}
+                thumbnailUrl={thumbnailUrl}
+                chTitle={chTitle}
+                key={id}
+              />
+            );
+          })}
+        </div>
+      </div>
     );
   }
 }
