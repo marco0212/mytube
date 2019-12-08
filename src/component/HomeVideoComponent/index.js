@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import VideoThumb from "../VideoThumb";
 import { getChannelData, TimeTransformer } from "../../functions";
 import Truncate from "react-truncate";
 export default class HomeVideoComponent extends React.Component {
@@ -21,11 +22,7 @@ export default class HomeVideoComponent extends React.Component {
     return (
       <div className="col-md-6 col-sm-12 col-lg-4 mb-3">
         <div className="video-item">
-          <Link
-            to={`/watch/${id}`}
-            className="video-thumb mb-3"
-            style={{ backgroundImage: `url(${thumbnailUrl})` }}
-          ></Link>
+          <VideoThumb id={id} thumbnailUrl={thumbnailUrl} />
           <div className=" d-flex">
             <div className="channel-thumb-area mr-3">
               <div className="img-wrap rounded-circle overflow-hidden">

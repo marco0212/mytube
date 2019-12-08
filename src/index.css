@@ -17,7 +17,7 @@ img {
 a:hover {
   text-decoration: none;
 }
-.home-wrapper .video-thumb {
+.video-thumb {
   display: block;
   padding-top: 57%;
   background: no-repeat center center / 100% auto;
@@ -26,6 +26,11 @@ a:hover {
   width: 40px;
   height: 40px;
 }
-.isLoading .video-thumb {
-  background-color: silver;
+.search-wrapper h5 {
+  max-width: 500px;
+}
+.search-wrapper h5,
+.search-wrapper .description {
+  max-height: calc(23.75px * 2);
+  overflow: hidden;
 }
