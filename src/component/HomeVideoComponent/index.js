@@ -1,11 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { TimeTransformer } from "../../functions";
 import Truncate from "react-truncate";
 export default function HomeVideoComponent({
   id,
   title,
   thumbnailUrl,
-  chTitle
+  chTitle,
+  time
 }) {
   return (
     <div className="col-md-6 col-sm-12 col-lg-4 mb-3" key={id}>
@@ -26,14 +28,17 @@ export default function HomeVideoComponent({
             </div>
           </div>
           <div className="video-info-area">
-            <h5 className="card-title">
+            <h5>
               <Link to={`/watch/${id}`} className="text-dark">
                 <Truncate lines={2} ellipsis="...">
                   {title}
                 </Truncate>
               </Link>
             </h5>
-            <h6 className="mb-2 text-muted">{chTitle}</h6>
+            <ul>
+              <li className="text-muted">{chTitle}</li>
+              <li className="text-muted">{TimeTransformer(time)}</li>
+            </ul>
           </div>
         </div>
       </div>

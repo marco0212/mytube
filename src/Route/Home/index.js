@@ -29,13 +29,15 @@ export default class Home extends React.Component {
             const id = data.id,
               title = data.snippet.title,
               thumbnailUrl = data.snippet.thumbnails.high.url,
-              chTitle = data.snippet.channelTitle;
+              chTitle = data.snippet.channelTitle,
+              time = data.snippet.publishedAt;
             return (
               <HomeVideoComponent
                 id={id}
                 title={title}
                 thumbnailUrl={thumbnailUrl}
                 chTitle={chTitle}
+                time={time}
                 key={id}
               />
             );
