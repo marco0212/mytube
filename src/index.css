@@ -2,6 +2,9 @@
   margin: 0;
   padding: 0;
 }
+body {
+  background-color: #f1f1f1;
+}
 ul,
 ol {
   list-style: none;
@@ -23,12 +26,13 @@ a:hover {
   background: no-repeat center center / 100% auto;
 }
 .channel-thumb-area .img-wrap {
-  width: 40px;
-  height: 40px;
+  width: 48px;
+  height: 48px;
 }
 .search-wrapper h5 {
   max-width: 500px;
 }
+.home-wrapper h5,
 .search-wrapper h5,
 .search-wrapper .description {
   max-height: calc(23.75px * 2);

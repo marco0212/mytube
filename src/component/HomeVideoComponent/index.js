@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import VideoThumb from "../VideoThumb";
 import { getChannelData, TimeTransformer } from "../../functions";
-import Truncate from "react-truncate";
+import ChannelThumb from "../ChannelThumb";
 export default class HomeVideoComponent extends React.Component {
   constructor(props) {
     super(props);
@@ -25,22 +25,12 @@ export default class HomeVideoComponent extends React.Component {
           <VideoThumb id={id} thumbnailUrl={thumbnailUrl} />
           <div className=" d-flex">
             <div className="channel-thumb-area mr-3">
-              <div className="img-wrap rounded-circle overflow-hidden">
-                {this.state.chThumb && (
-                  <img
-                    src={this.state.chThumb}
-                    className="img-fluid"
-                    alt={chTitle}
-                  />
-                )}
-              </div>
+              <ChannelThumb title={chTitle} src={this.state.chThumb} />
             </div>
             <div className="video-info-area">
               <h5>
                 <Link to={`/watch/${id}`} className="text-dark">
-                  <Truncate lines={2} ellipsis="...">
-                    {title}
-                  </Truncate>
+                  {title}
                 </Link>
               </h5>
               <ul>
