@@ -24,9 +24,7 @@ export default class HomeVideoComponent extends React.Component {
         <div className="video-item">
           <VideoThumb id={id} thumbnailUrl={thumbnailUrl} />
           <div className=" d-flex">
-            <div className="channel-thumb-area mr-3">
-              <ChannelThumb title={chTitle} src={this.state.chThumb} />
-            </div>
+            <ChannelThumb title={chTitle} src={this.state.chThumb} />
             <div className="video-info-area">
               <h5>
                 <Link to={`/watch/${id}`} className="text-dark">

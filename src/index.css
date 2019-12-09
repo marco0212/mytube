@@ -32,9 +32,11 @@ a:hover {
 .search-wrapper h5 {
   max-width: 500px;
 }
+
 .home-wrapper h5,
 .search-wrapper h5,
-.search-wrapper .description {
+.search-wrapper .description,
+.related-video-area h5 {
   max-height: calc(23.75px * 2);
   overflow: hidden;
 }
