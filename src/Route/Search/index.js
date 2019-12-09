@@ -41,7 +41,7 @@ export default class Search extends React.Component {
         {this.state.data.map(data => {
           return (
             <div className="row" key={data.id.videoId}>
-              <div className="col-3 col-sm-6 col-md-5 col-lg-3">
+              <div className="col-sm-12 col-md-5 col-lg-3">
                 <div className="thumb-area">
                   <VideoThumb
                     id={data.id.videoId}
@@ -49,7 +49,7 @@ export default class Search extends React.Component {
                   />
                 </div>
               </div>
-              <div className="col-9 col-sm-6 col-md-7 col-lg-9">
+              <div className="col-sm-12 col-md-7 col-lg-9">
                 <div className="info-area">
                   <h5>
                     <Link

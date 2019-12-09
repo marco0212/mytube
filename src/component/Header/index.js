@@ -22,7 +22,7 @@ export default class Header extends React.Component {
           <div className="row">
             <div className="col-12">
               <div className="d-flex justify-content-between">
-                <h1 className="logo mr-sm-3 my-auto">
+                <h1 className="logo mr-3 my-auto h3">
                   <Link to="/" className="text-white">
                     MYTUBE
                   </Link>
@@ -32,13 +32,11 @@ export default class Header extends React.Component {
                   onSubmit={this.handlerOnSubmit.bind(this)}
                 >
                   <input
-                    className="form-control form-control-lg mr-3 mr-sm-1"
+                    className="form-control mr-1"
                     placeholder="Search"
                     onChange={this.handlerOnChange.bind(this)}
                   />
-                  <button className="btn btn-outline-success btn-lg">
-                    Search
-                  </button>
+                  <button className="btn btn-outline-success">Search</button>
                 </form>
               </div>
             </div>

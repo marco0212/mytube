@@ -26,7 +26,7 @@ export default class Home extends React.Component {
       <div className="container pt-4 home-wrapper">
         <div className="row">
           <div className="col-12">
-            <h3 className="mb-4">Most Popular Videos</h3>
+            <h4 className="mb-4">Most Popular Videos</h4>
           </div>
           {this.state.videoData.map(data => {
             const id = data.id,

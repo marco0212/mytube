@@ -67,14 +67,14 @@ export default class Watch extends React.Component {
                   title={this.state.data.snippet.title}
                 />
               </div>
-              <h3 className="mb-3">{this.state.data.snippet.title}</h3>
+              <h3 className="h4 mb-3">{this.state.data.snippet.title}</h3>
               <div className="video-info-area">
                 <div className="d-flex align-items-center mb-3">
                   <ChannelThumb
                     src={this.state.chThumb}
                     title={this.state.data.snippet.title}
                   />
-                  <p className="h5 mb-0">
+                  <p className="h6 mb-0">
                     {this.state.data.snippet.channelTitle}
                   </p>
                 </div>
@@ -92,7 +92,9 @@ export default class Watch extends React.Component {
                       })
                     : null}
                 </ul>
-                <p>{this.state.data.snippet.description}</p>
+                <p className="description">
+                  {this.state.data.snippet.description}
+                </p>
               </div>
             </div>
           </div>
@@ -108,14 +110,14 @@ export default class Watch extends React.Component {
                       />
                     </div>
                     <div className="text-area">
-                      <h5>
+                      <h6>
                         <Link
                           to={`/watch/${video.id.videoId}`}
                           className="text-dark"
                         >
                           {video.snippet.title}
                         </Link>
-                      </h5>
+                      </h6>
                       <ul>
                         <li>{video.snippet.channelTitle}</li>
                         <li>{TimeTransformer(video.snippet.publishedAt)}</li>

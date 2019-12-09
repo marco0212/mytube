@@ -22,12 +22,12 @@ a:hover {
 }
 .video-thumb {
   display: block;
-  padding-top: 57%;
+  padding-top: 56%;
   background: no-repeat center center / 100% auto;
 }
 .channel-thumb-area .img-wrap {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
 }
 .search-wrapper h5 {
   max-width: 500px;
@@ -35,8 +35,15 @@ a:hover {
 
 .home-wrapper h5,
 .search-wrapper h5,
-.search-wrapper .description,
 .related-video-area h5 {
-  max-height: calc(23.75px * 2);
+  max-height: calc(1.25rem * 1.2 * 2);
   overflow: hidden;
+}
+.description {
+  white-space: pre-wrap;
+}
+@media (max-width: 480px) {
+  body {
+    font-size: 14px;
+  }
 }
