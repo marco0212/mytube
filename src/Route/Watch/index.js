@@ -78,17 +78,15 @@ export default class Watch extends React.Component {
                     {this.state.data.snippet.channelTitle}
                   </p>
                 </div>
-                <ul className="tags d-flex">
+                <ul className="tags d-flex flex-wrap">
                   {this.state.data.snippet.tags
                     ? this.state.data.snippet.tags.slice(0, 10).map(tag => {
                         return (
                           <li key={tag} className="mr-2">
-                            <p className="h5">
-                              <Link
-                                to={`/search/${tag}`}
-                                className="badge badge-info"
-                              >{`#${tag}`}</Link>
-                            </p>
+                            <Link
+                              to={`/search/${tag}`}
+                              className="badge badge-info h5"
+                            >{`#${tag}`}</Link>
                           </li>
                         );
                       })
