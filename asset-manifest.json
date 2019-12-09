@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/mytube/static/css/main.0e0e26af.chunk.css",
+    "main.js": "/mytube/static/js/main.1acb0fd3.chunk.js",
+    "main.js.map": "/mytube/static/js/main.1acb0fd3.chunk.js.map",
+    "runtime-main.js": "/mytube/static/js/runtime-main.77384829.js",
+    "runtime-main.js.map": "/mytube/static/js/runtime-main.77384829.js.map",
+    "static/css/2.83ace7dd.chunk.css": "/mytube/static/css/2.83ace7dd.chunk.css",
+    "static/js/2.0d974c9d.chunk.js": "/mytube/static/js/2.0d974c9d.chunk.js",
+    "static/js/2.0d974c9d.chunk.js.map": "/mytube/static/js/2.0d974c9d.chunk.js.map",
+    "index.html": "/mytube/index.html",
+    "precache-manifest.7517ff2015e782be8ce2e437911437a3.js": "/mytube/precache-manifest.7517ff2015e782be8ce2e437911437a3.js",
+    "service-worker.js": "/mytube/service-worker.js",
+    "static/css/2.83ace7dd.chunk.css.map": "/mytube/static/css/2.83ace7dd.chunk.css.map",
+    "static/css/main.0e0e26af.chunk.css.map": "/mytube/static/css/main.0e0e26af.chunk.css.map"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.77384829.js",
+    "static/css/2.83ace7dd.chunk.css",
+    "static/js/2.0d974c9d.chunk.js",
+    "static/css/main.0e0e26af.chunk.css",
+    "static/js/main.1acb0fd3.chunk.js"
+  ]
+}
