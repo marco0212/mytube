@@ -18,7 +18,7 @@ export default class Watch extends React.Component {
       isLoading: true
     };
   }
-  getVideoById = id => {
+  initializeById = id => {
     getVideoById(id, data => {
       if (!data) {
         this.props.history.push("/");
@@ -41,14 +41,11 @@ export default class Watch extends React.Component {
   componentDidUpdate(prevProps) {
     const currentId = this.props.match.params.id;
     if (prevProps.match.params.id !== currentId) {
-      this.getVideoById(currentId);
+      this.initializeById(currentId);
     }
   }
   componentDidMount() {
-    this.getVideoById(this.props.match.params.id);
-  }
-  componentWillUnmount() {
-    this.setState({ isLoading: true });
+    this.initializeById(this.props.match.params.id);
   }
   render() {
     const { isLoading } = this.state;
@@ -100,7 +97,7 @@ export default class Watch extends React.Component {
           </div>
           <div className="col-lg-4">
             <aside className="related-video-area">
-              {this.state.relatedVideo.map((video, i) => {
+              {this.state.relatedVideo.map(video => {
                 return (
                   <div className="video-item" key={video.id.videoId}>
                     <div className="thumb-area">
