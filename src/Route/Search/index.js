@@ -11,7 +11,7 @@ export default class Search extends React.Component {
       searchedList: []
     };
   }
-  getSearchedVideos = keyword => {
+  fetchSearchData = keyword => {
     getSearchedVideos(keyword, videos => {
       if (!videos) {
         this.props.history.push("/");
@@ -21,12 +21,13 @@ export default class Search extends React.Component {
     });
   };
   componentDidMount() {
-    this.getSearchedVideos(this.props.match.params.keyword);
+    this.fetchSearchData(this.props.match.params.keyword);
   }
   componentDidUpdate(prevProps) {
     const currentKeyword = this.props.match.params.keyword;
     if (prevProps.match.params.keyword !== currentKeyword) {
-      this.getSearchedVideos(currentKeyword);
+      this.setState({ isLoading: true });
+      this.fetchSearchData(currentKeyword);
     }
   }
   render() {

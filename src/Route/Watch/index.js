@@ -18,7 +18,7 @@ export default class Watch extends React.Component {
       chThumb: ""
     };
   }
-  getVideoById = id => {
+  fetchWatchData = id => {
     getVideoById(id, currentVideo => {
       if (!currentVideo) {
         this.props.history.push("/");
@@ -40,11 +40,12 @@ export default class Watch extends React.Component {
   componentDidUpdate(prevProps) {
     const currentId = this.props.match.params.id;
     if (prevProps.match.params.id !== currentId) {
-      this.getVideoById(currentId);
+      this.setState({ isLoading: true });
+      this.fetchWatchData(currentId);
     }
   }
   componentDidMount() {
-    this.getVideoById(this.props.match.params.id);
+    this.fetchWatchData(this.props.match.params.id);
   }
   render() {
     const { isLoading } = this.state;
