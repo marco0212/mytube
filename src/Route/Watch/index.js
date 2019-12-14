@@ -1,15 +1,14 @@
 import React from "react";
+import WatchVideoArea from "../../component/WatchVideoArea";
+import Loading from "../../component/Loading";
+import VideoThumb from "../../component/VideoThumb";
 import { Link } from "react-router-dom";
 import {
   getVideoById,
-  getYoutubeEmbedUrl,
   getChannelData,
   getRelateToVideos,
   TimeTransformer
 } from "../../functions";
-import ChannelThumb from "../../component/ChannelThumb";
-import Loading from "../../component/Loading";
-import VideoThumb from "../../component/VideoThumb";
 
 export default class Watch extends React.Component {
   constructor(props) {
@@ -54,49 +53,10 @@ export default class Watch extends React.Component {
       <div className="container pt-4 watch-wrapper">
         <div className="row">
           <div className="col-lg-8">
-            <div className="player-area">
-              <div className="embed-responsive embed-responsive-16by9 mb-4">
-                <iframe
-                  src={getYoutubeEmbedUrl(this.state.currentVideo.id)}
-                  className="embed-responsive-item"
-                  allowFullScreen="1"
-                  title={this.state.currentVideo.snippet.title}
-                />
-              </div>
-              <h3 className="h4 mb-3">
-                {this.state.currentVideo.snippet.title}
-              </h3>
-              <div className="video-info-area">
-                <div className="d-flex align-items-center mb-3">
-                  <ChannelThumb
-                    src={this.state.chThumb}
-                    title={this.state.currentVideo.snippet.title}
-                  />
-                  <p className="h6 mb-0">
-                    {this.state.currentVideo.snippet.channelTitle}
-                  </p>
-                </div>
-                <ul className="tags d-flex flex-wrap">
-                  {this.state.currentVideo.snippet.tags
-                    ? this.state.currentVideo.snippet.tags
-                        .slice(0, 10)
-                        .map(tag => {
-                          return (
-                            <li key={tag} className="mr-2">
-                              <Link
-                                to={`/search/${tag}`}
-                                className="badge badge-info h5"
-                              >{`#${tag}`}</Link>
-                            </li>
-                          );
-                        })
-                    : null}
-                </ul>
-                <p className="description">
-                  {this.state.currentVideo.snippet.description}
-                </p>
-              </div>
-            </div>
+            <WatchVideoArea
+              currentVideo={this.state.currentVideo}
+              chThumb={this.state.chThumb}
+            />
           </div>
           <div className="col-lg-4">
             <aside className="related-video-area">
