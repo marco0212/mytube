@@ -1,24 +1,23 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import Loading from "../../component/Loading";
-import { getSearchedVideos, TimeTransformer } from "../../functions";
-import VideoThumb from "../../component/VideoThumb";
+import { getSearchedVideos } from "../../functions";
 import SearchVideoComponent from "../../component/SearchVideoComponent";
 
 export default class Search extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      searchedList: []
     };
   }
   getSearchedVideos = keyword => {
-    getSearchedVideos(keyword, data => {
-      if (!data) {
+    getSearchedVideos(keyword, videos => {
+      if (!videos) {
         this.props.history.push("/");
         return;
       }
-      this.setState({ isLoading: false, data });
+      this.setState({ isLoading: false, searchedList: videos });
     });
   };
   componentDidMount() {
@@ -36,15 +35,15 @@ export default class Search extends React.Component {
       <Loading />
     ) : (
       <div className="container pt-4 search-wrapper">
-        {this.state.data.map(data => {
+        {this.state.searchedList.map(item => {
           return (
             <SearchVideoComponent
-              id={data.id.videoId}
-              title={data.snippet.title}
-              description={data.snippet.description}
-              thumbnailUrl={data.snippet.thumbnails.high.url}
-              chTitle={data.snippet.channelTitle}
-              time={data.snippet.publishedAt}
+              id={item.id.videoId}
+              title={item.snippet.title}
+              description={item.snippet.description}
+              thumbnailUrl={item.snippet.thumbnails.high.url}
+              chTitle={item.snippet.channelTitle}
+              time={item.snippet.publishedAt}
             />
           );
         })}

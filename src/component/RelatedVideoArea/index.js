@@ -1,8 +1,5 @@
 import React from "react";
-import VideoThumb from "../VideoThumb";
 import RelatedVideoItem from "../RelatedVideoItem";
-import { Link } from "react-router-dom";
-import { TimeTransformer } from "../../functions";
 
 export default function RelatedVideoArea({ relatedVideo }) {
   return (
@@ -15,6 +12,7 @@ export default function RelatedVideoArea({ relatedVideo }) {
           time = video.snippet.publishedAt;
         return (
           <RelatedVideoItem
+            key={id}
             id={id}
             title={title}
             thumbnailUrl={thumbnailUrl}

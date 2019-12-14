@@ -12,7 +12,10 @@ export default class Watch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoading: true
+      isLoading: true,
+      currentVideo: {},
+      relatedVideos: [],
+      chThumb: ""
     };
   }
   getVideoById = id => {
@@ -21,12 +24,12 @@ export default class Watch extends React.Component {
         this.props.history.push("/");
         return;
       }
-      getRelateToVideos(id, relatedVideo => {
+      getRelateToVideos(id, relatedVideos => {
         getChannelData(currentVideo.snippet.channelId, data => {
           const chThumb = data.snippet.thumbnails.default.url;
           this.setState({
             currentVideo,
-            relatedVideo,
+            relatedVideos,
             chThumb,
             isLoading: false
           });
@@ -57,7 +60,7 @@ export default class Watch extends React.Component {
             />
           </div>
           <div className="col-lg-4">
-            <RelatedVideoArea relatedVideo={this.state.relatedVideo} />
+            <RelatedVideoArea relatedVideo={this.state.relatedVideos} />
           </div>
         </div>
       </div>
