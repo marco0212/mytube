@@ -1,7 +1,7 @@
 import React from "react";
 import VideoThumb from "../VideoThumb";
 import { Link } from "react-router-dom";
-import { TimeTransformer } from "../../functions";
+import { timeTransformer } from "../../functions";
 
 export default function RelatedVideoItem({
   id,
@@ -23,7 +23,7 @@ export default function RelatedVideoItem({
         </h6>
         <ul>
           <li>{channelTitle}</li>
-          <li>{TimeTransformer(time)}</li>
+          <li>{timeTransformer(time)}</li>
         </ul>
       </div>
     </div>

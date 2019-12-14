@@ -59,7 +59,7 @@ function getYoutubeEmbedUrl(id) {
   return `https://www.youtube.com/embed/${id}`;
 }
 
-function TimeTransformer(time) {
+function timeTransformer(time) {
   const now = new Date().getTime(),
     publishedAt = new Date(time).getTime(),
     gap = now - publishedAt,
@@ -84,5 +84,5 @@ export {
   getYoutubeEmbedUrl,
   getVideoById,
   getPopularVideos,
-  TimeTransformer
+  timeTransformer
 };

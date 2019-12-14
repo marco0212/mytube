@@ -1,7 +1,7 @@
 import React from "react";
 import VideoThumb from "../VideoThumb";
 import { Link } from "react-router-dom";
-import { TimeTransformer } from "../../functions";
+import { timeTransformer } from "../../functions";
 
 export default function SearchVideoComponent({
   id,
@@ -26,7 +26,7 @@ export default function SearchVideoComponent({
             </Link>
           </h5>
           <ul className="mb-5">
-            <li className="text-muted mb-2">{`${chTitle} · ${TimeTransformer(
+            <li className="text-muted mb-2">{`${chTitle} · ${timeTransformer(
               time
             )}`}</li>
             <li className="text-muted description">{description}</li>

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import VideoThumb from "../VideoThumb";
-import { getChannelData, TimeTransformer } from "../../functions";
+import { getChannelData, timeTransformer } from "../../functions";
 import ChannelThumb from "../ChannelThumb";
 export default class HomeVideoComponent extends React.Component {
   constructor(props) {
@@ -33,7 +33,7 @@ export default class HomeVideoComponent extends React.Component {
               </h5>
               <ul>
                 <li className="text-muted">{chTitle}</li>
-                <li className="text-muted">{TimeTransformer(time)}</li>
+                <li className="text-muted">{timeTransformer(time)}</li>
               </ul>
             </div>
           </div>
