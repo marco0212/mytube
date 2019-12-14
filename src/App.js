@@ -1,5 +1,10 @@
 import React from "react";
-import { HashRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Switch,
+  Route,
+  Redirect
+} from "react-router-dom";
 import Home from "./Route/Home";
 import Search from "./Route/Search";
 import Watch from "./Route/Watch";
@@ -15,6 +20,9 @@ export default function App() {
         <Route path="/search/:keyword" component={Search} />
         <Route path="/watch/:id" component={Watch} />
         <Route exact={true} path="/" component={Home} />
+        <Route path="*">
+          <Redirect to="/" />
+        </Route>
       </Switch>
     </Router>
   );
