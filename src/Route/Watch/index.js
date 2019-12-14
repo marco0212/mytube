@@ -18,20 +18,19 @@ export default class Watch extends React.Component {
       isLoading: true
     };
   }
-  initializeById = id => {
-    getVideoById(id, data => {
-      if (!data) {
+  getVideoById = id => {
+    getVideoById(id, currentVideo => {
+      if (!currentVideo) {
         this.props.history.push("/");
         return;
       }
-      this.setState({ data });
-      getRelateToVideos(id, data => {
-        this.setState({
-          relatedVideo: data
-        });
-        getChannelData(this.state.data.snippet.channelId, data => {
+      getRelateToVideos(id, relatedVideo => {
+        getChannelData(currentVideo.snippet.channelId, data => {
+          const chThumb = data.snippet.thumbnails.default.url;
           this.setState({
-            chThumb: data.snippet.thumbnails.default.url,
+            currentVideo,
+            relatedVideo,
+            chThumb,
             isLoading: false
           });
         });
@@ -41,11 +40,11 @@ export default class Watch extends React.Component {
   componentDidUpdate(prevProps) {
     const currentId = this.props.match.params.id;
     if (prevProps.match.params.id !== currentId) {
-      this.initializeById(currentId);
+      this.getVideoById(currentId);
     }
   }
   componentDidMount() {
-    this.initializeById(this.props.match.params.id);
+    this.getVideoById(this.props.match.params.id);
   }
   render() {
     const { isLoading } = this.state;
@@ -58,39 +57,43 @@ export default class Watch extends React.Component {
             <div className="player-area">
               <div className="embed-responsive embed-responsive-16by9 mb-4">
                 <iframe
-                  src={getYoutubeEmbedUrl(this.state.data.id)}
+                  src={getYoutubeEmbedUrl(this.state.currentVideo.id)}
                   className="embed-responsive-item"
                   allowFullScreen="1"
-                  title={this.state.data.snippet.title}
+                  title={this.state.currentVideo.snippet.title}
                 />
               </div>
-              <h3 className="h4 mb-3">{this.state.data.snippet.title}</h3>
+              <h3 className="h4 mb-3">
+                {this.state.currentVideo.snippet.title}
+              </h3>
               <div className="video-info-area">
                 <div className="d-flex align-items-center mb-3">
                   <ChannelThumb
                     src={this.state.chThumb}
-                    title={this.state.data.snippet.title}
+                    title={this.state.currentVideo.snippet.title}
                   />
                   <p className="h6 mb-0">
-                    {this.state.data.snippet.channelTitle}
+                    {this.state.currentVideo.snippet.channelTitle}
                   </p>
                 </div>
                 <ul className="tags d-flex flex-wrap">
-                  {this.state.data.snippet.tags
-                    ? this.state.data.snippet.tags.slice(0, 10).map(tag => {
-                        return (
-                          <li key={tag} className="mr-2">
-                            <Link
-                              to={`/search/${tag}`}
-                              className="badge badge-info h5"
-                            >{`#${tag}`}</Link>
-                          </li>
-                        );
-                      })
+                  {this.state.currentVideo.snippet.tags
+                    ? this.state.currentVideo.snippet.tags
+                        .slice(0, 10)
+                        .map(tag => {
+                          return (
+                            <li key={tag} className="mr-2">
+                              <Link
+                                to={`/search/${tag}`}
+                                className="badge badge-info h5"
+                              >{`#${tag}`}</Link>
+                            </li>
+                          );
+                        })
                     : null}
                 </ul>
                 <p className="description">
-                  {this.state.data.snippet.description}
+                  {this.state.currentVideo.snippet.description}
                 </p>
               </div>
             </div>

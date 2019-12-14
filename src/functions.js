@@ -10,6 +10,7 @@ function getRelateToVideos(id, cb) {
       cb(items);
     });
 }
+
 function getSearchedVideos(keyword, cb) {
   return fetch(
     `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${keyword}&maxResults=10&order=relevance&key=${API_KEY}`

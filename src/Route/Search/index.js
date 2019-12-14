@@ -29,9 +29,6 @@ export default class Search extends React.Component {
       this.getSearchedVideos(currentKeyword);
     }
   }
-  componentWillUnmount() {
-    this.setState({ isLoading: true });
-  }
   render() {
     const { isLoading } = this.state;
     return isLoading ? (
@@ -39,33 +36,31 @@ export default class Search extends React.Component {
     ) : (
       <div className="container pt-4 search-wrapper">
         {this.state.data.map(data => {
+          const id = data.id.videoId,
+            title = data.snippet.title,
+            description = data.snippet.description,
+            thumbnailUrl = data.snippet.thumbnails.high.url,
+            chTitle = data.snippet.channelTitle,
+            time = data.snippet.publishedAt;
           return (
-            <div className="row" key={data.id.videoId}>
+            <div className="row" key={id}>
               <div className="col-sm-12 col-md-5 col-lg-3">
                 <div className="thumb-area">
-                  <VideoThumb
-                    id={data.id.videoId}
-                    thumbnailUrl={data.snippet.thumbnails.high.url}
-                  />
+                  <VideoThumb id={id} thumbnailUrl={thumbnailUrl} />
                 </div>
               </div>
               <div className="col-sm-12 col-md-7 col-lg-9">
                 <div className="info-area">
                   <h5>
-                    <Link
-                      to={`/watch/${data.id.videoId}`}
-                      className="text-dark"
-                    >
-                      {data.snippet.title}
+                    <Link to={`/watch/${id}`} className="text-dark">
+                      {title}
                     </Link>
                   </h5>
                   <ul className="mb-5">
-                    <li className="text-muted mb-2">{`${
-                      data.snippet.channelTitle
-                    } · ${TimeTransformer(data.snippet.publishedAt)}`}</li>
-                    <li className="text-muted description">
-                      {data.snippet.description}
-                    </li>
+                    <li className="text-muted mb-2">{`${chTitle} · ${TimeTransformer(
+                      time
+                    )}`}</li>
+                    <li className="text-muted description">{description}</li>
                   </ul>
                 </div>
               </div>
