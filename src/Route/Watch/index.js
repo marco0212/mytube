@@ -1,13 +1,11 @@
 import React from "react";
-import WatchVideoArea from "../../component/WatchVideoArea";
 import Loading from "../../component/Loading";
-import VideoThumb from "../../component/VideoThumb";
-import { Link } from "react-router-dom";
+import WatchVideoArea from "../../component/WatchVideoArea";
+import RelatedVideoArea from "../../component/RelatedVideoArea";
 import {
   getVideoById,
   getChannelData,
-  getRelateToVideos,
-  TimeTransformer
+  getRelateToVideos
 } from "../../functions";
 
 export default class Watch extends React.Component {
@@ -59,34 +57,7 @@ export default class Watch extends React.Component {
             />
           </div>
           <div className="col-lg-4">
-            <aside className="related-video-area">
-              {this.state.relatedVideo.map(video => {
-                return (
-                  <div className="video-item" key={video.id.videoId}>
-                    <div className="thumb-area">
-                      <VideoThumb
-                        id={video.id.videoId}
-                        thumbnailUrl={video.snippet.thumbnails.high.url}
-                      />
-                    </div>
-                    <div className="text-area">
-                      <h6>
-                        <Link
-                          to={`/watch/${video.id.videoId}`}
-                          className="text-dark"
-                        >
-                          {video.snippet.title}
-                        </Link>
-                      </h6>
-                      <ul>
-                        <li>{video.snippet.channelTitle}</li>
-                        <li>{TimeTransformer(video.snippet.publishedAt)}</li>
-                      </ul>
-                    </div>
-                  </div>
-                );
-              })}
-            </aside>
+            <RelatedVideoArea relatedVideo={this.state.relatedVideo} />
           </div>
         </div>
       </div>
