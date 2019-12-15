@@ -10,13 +10,13 @@ export default class Home extends React.Component {
       videoData: {}
     };
   }
-  getPopularVideos = () => {
+  fetchHomeData = () => {
     getPopularVideos(data => {
       this.setState({ isLoading: false, videoData: data });
     });
   };
   componentDidMount() {
-    this.getPopularVideos();
+    this.fetchHomeData();
   }
   render() {
     const { isLoading } = this.state;
