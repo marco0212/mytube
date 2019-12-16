@@ -11,9 +11,9 @@ function getRelateToVideos(id, cb) {
     });
 }
 
-function getSearchedVideos(keyword, cb) {
+function getSearchedVideos(keyword, filter, cb) {
   return fetch(
-    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${keyword}&maxResults=10&order=relevance&key=${API_KEY}`
+    `https://www.googleapis.com/youtube/v3/search?part=snippet&type=video&q=${keyword}&maxResults=10&order=${filter}&key=${API_KEY}`
   )
     .then(response => response.json())
     .then(response => {
