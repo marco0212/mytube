@@ -1,4 +1,5 @@
 import React from "react";
+import styled from "styled-components";
 
 export default function RegionList({ allRegions, setRegion }) {
   function clickHandler(regionCode) {
@@ -7,12 +8,42 @@ export default function RegionList({ allRegions, setRegion }) {
     };
   }
   return (
-    <ul>
+    <RegionButtonWrap>
       {allRegions.map(regionCode => (
         <li key={regionCode}>
-          <button onClick={clickHandler(regionCode)}>{regionCode}</button>
+          <RegionButton onClick={clickHandler(regionCode)} code={regionCode}>
+            {regionCode}
+          </RegionButton>
         </li>
       ))}
-    </ul>
+    </RegionButtonWrap>
   );
 }
+
+const RegionButtonWrap = styled.ul`
+  display: flex;
+`;
+const RegionButton = styled.button`
+  border: 0;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: ${props => {
+    switch (props.code) {
+      case "KR":
+        return "red";
+      case "US":
+        return "blue";
+      case "GB":
+        return "yellow";
+      case "ES":
+        return "orange";
+      case "IT":
+        return "skyblue";
+      case "JP":
+        return "lime";
+      default:
+        return "black";
+    }
+  }};
+`;

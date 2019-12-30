@@ -30,6 +30,10 @@ export default function Header() {
 }
 
 const HeaderWrap = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
   background-color: #fff;
   padding: 10px 0;
 `;

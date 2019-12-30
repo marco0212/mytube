@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_KEY } from "../YOUTUBE_KEY";
 import Loading from "../Component/Loading";
-import PopularList from "../Component/PopularList";
-import RegionList from "../Component/RegionList";
+import PopularListArea from "../Component/PopularListArea";
 
 export default function Home() {
   const [videos, setVideos] = useState(null);
@@ -12,7 +11,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,statistics&chart=mostPopular&regionCode=${region}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,statistics&chart=mostPopular&maxResults=8&regionCode=${region}&key=${API_KEY}`
     )
       .then(response => response.json())
       .then(jsonData => {
@@ -25,9 +24,11 @@ export default function Home() {
     <Loading />
   ) : (
     <div>
-      <h1>Most Popular Videos...</h1>
-      <RegionList allRegions={allRegions} setRegion={setRegion} />
-      <PopularList videos={videos} />
+      <PopularListArea
+        videos={videos}
+        allRegions={allRegions}
+        setRegion={setRegion}
+      />
     </div>
   );
 }
