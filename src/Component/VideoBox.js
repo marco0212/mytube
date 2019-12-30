@@ -89,6 +89,7 @@ const ChannelThumbnailWrap = styled.div`
   background-color: #fff;
   img {
     width: 100%;
+    height: 100%;
   }
 `;
 const VideoTitle = styled.h5`

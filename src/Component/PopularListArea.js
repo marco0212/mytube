@@ -41,7 +41,7 @@ const ListHeader = styled.header`
 const SectionTitle = styled.h3`
   font-size: 1.3rem;
   font-weight: 500;
-  line-height: 1.2rem;
+  line-height: 50px;
 `;
 const VideoList = styled.ul`
   padding: 30px 20px;

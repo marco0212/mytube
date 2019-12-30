@@ -7,9 +7,9 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    margin-left:  300px;
+    margin-left:  250px;
     background-color: rgb(238, 240, 246);
-    padding-top: 150px;
+    padding-top: 110px;
     padding-bottom: 100px;
     font-size: 10px;
     font-family: "Helvetica Neue","Apple SD Gothic Neo","Malgun Gothic", sans-serif;
