@@ -10,7 +10,7 @@ import {
 
 export default function PopularListArea({ videos, allRegions, setRegion }) {
   return (
-    <SectionBox start="1" end="4">
+    <SectionBox column={[1, 4]} row={[1, 3]}>
       <SectionHeader>
         <SectionTitle>Recomeneded</SectionTitle>
         <RegionList allRegions={allRegions} setRegion={setRegion} />

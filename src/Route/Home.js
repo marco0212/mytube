@@ -3,6 +3,7 @@ import { API_KEY } from "../YOUTUBE_KEY";
 import Loading from "../Component/Loading";
 import PopularListArea from "../Component/PopularListArea";
 import PlayList from "../Component/PlayList";
+import Connect from "../Component/Contact";
 import { Container, GridContainer } from "../style/styledComponents";
 
 export default function Home() {
@@ -33,6 +34,7 @@ export default function Home() {
           setRegion={setRegion}
         />
         <PlayList />
+        <Connect />
       </GridContainer>
     </Container>
   );

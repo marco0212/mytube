@@ -5,11 +5,11 @@ import {
   SectionTitle
 } from "../style/styledComponents";
 
-export default function PlayList() {
+export default function Contact() {
   return (
-    <SectionBox column="4" row="1">
+    <SectionBox column="4" row="2">
       <SectionHeader>
-        <SectionTitle>Play List</SectionTitle>
+        <SectionTitle>Connect</SectionTitle>
       </SectionHeader>
     </SectionBox>
   );

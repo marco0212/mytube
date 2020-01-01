@@ -10,14 +10,15 @@ export default createGlobalStyle`
     background-color: ${props => props.theme.backgroundColor};
     padding-top: 110px;
     padding-bottom: 100px;
-    font-size: 10px;
+    font-size: 14px;
     font-family: "Helvetica Neue","Apple SD Gothic Neo","Malgun Gothic", sans-serif;
   }
   img {
     vertical-align: top;
   }
   a {
-    text-decoration: none; color: inherit;
+    text-decoration: none;
+    color: inherit;
   }
 
 `;
