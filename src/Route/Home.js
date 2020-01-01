@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import { API_KEY } from "../YOUTUBE_KEY";
 import Loading from "../Component/Loading";
 import PopularListArea from "../Component/PopularListArea";
+import PlayList from "../Component/PlayList";
+import { Container, GridContainer } from "../style/styledComponents";
 
 export default function Home() {
   const [videos, setVideos] = useState(null);
@@ -23,12 +25,15 @@ export default function Home() {
   return isLoading ? (
     <Loading />
   ) : (
-    <div>
-      <PopularListArea
-        videos={videos}
-        allRegions={allRegions}
-        setRegion={setRegion}
-      />
-    </div>
+    <Container>
+      <GridContainer route={"home"}>
+        <PopularListArea
+          videos={videos}
+          allRegions={allRegions}
+          setRegion={setRegion}
+        />
+        <PlayList />
+      </GridContainer>
+    </Container>
   );
 }
