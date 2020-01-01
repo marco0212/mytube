@@ -7,8 +7,7 @@ export default createGlobalStyle`
     box-sizing: border-box;
   }
   body {
-    margin-left:  250px;
-    background-color: rgb(238, 240, 246);
+    background-color: ${props => props.theme.backgroundColor};
     padding-top: 110px;
     padding-bottom: 100px;
     font-size: 10px;

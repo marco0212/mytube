@@ -10,6 +10,14 @@ export default function Header() {
       <HeaderWrap>
         <Container>
           <HeaderInner>
+            <h1>
+              <Link to="/">
+                <Logo>
+                  <img src={logo} alt="MyTube" />
+                  MyTube
+                </Logo>
+              </Link>
+            </h1>
             <form>
               <InputWrap>
                 <input placeholder="Search Videos" />
@@ -19,44 +27,15 @@ export default function Header() {
           </HeaderInner>
         </Container>
       </HeaderWrap>
-      <Aside>
-        <h1>
-          <Link to="/">
-            <Logo>
-              <img src={logo} alt="MyTube" />
-              MyTube
-            </Logo>
-          </Link>
-        </h1>
-        <p>&copy; 2020 MyTube</p>
-      </Aside>
     </Fragment>
   );
 }
 
-const Aside = styled.aside`
-  position: fixed;
-  width: 250px;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  background-color: #fff;
-  padding: 10px 20px;
-  box-shadow: ${props => props.theme.boxShadow};
-  z-index: 10;
-  display: flex;
-  flex-direction: column;
-  p {
-    font-size: 0.7rem;
-    margin-top: auto;
-    color: ${props => props.theme.greyColor};
-  }
-`;
 const HeaderWrap = styled.header`
   z-index: 11;
   position: fixed;
   top: 0;
-  left: 250px;
+  left: 0;
   right: 0;
   background-color: rgba(255, 255, 255, 0.99);
   padding: 15px 0;
