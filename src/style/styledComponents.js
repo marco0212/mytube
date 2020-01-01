@@ -13,8 +13,20 @@ export const GridContainer = styled.div`
 export const SectionBox = styled.section`
   background-color: #fff;
   box-shadow: ${props => props.theme.boxShadow};
-  grid-column-start: ${props => props.start};
-  grid-column-end: ${props => props.end};
+  ${props => {
+    if (Array.isArray(props.column)) {
+      return `grid-column-start : ${props.column[0]}; grid-column-end : ${props.column[1]}`;
+    } else {
+      return `grid-column : ${props.column}`;
+    }
+  }}
+  ${props => {
+    if (Array.isArray(props.row)) {
+      return `grid-row-start : ${props.row[0]}; grid-row-end : ${props.row[1]}`;
+    } else {
+      return `grid-row : ${props.row}`;
+    }
+  }}
 `;
 export const SectionHeader = styled.header`
   display: flex;
@@ -26,7 +38,7 @@ export const SectionHeader = styled.header`
 export const SectionTitle = styled.h3`
   font-size: ${props => props.theme.bigTextSize};
   font-weight: 500;
-  line-height: 35px;
+  line-height: 30px;
 `;
 export const VideoList = styled.ul`
   padding: 30px 20px;
