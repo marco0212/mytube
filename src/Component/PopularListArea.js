@@ -4,12 +4,7 @@ import RegionList from "./RegionList";
 import { Container } from "../style/styledComponents";
 import styled from "styled-components";
 
-export default function PopularListArea({
-  videos,
-  region,
-  allRegions,
-  setRegion
-}) {
+export default function PopularListArea({ videos, allRegions, setRegion }) {
   return (
     <Container>
       <SectionBox>
@@ -29,19 +24,19 @@ export default function PopularListArea({
 
 const SectionBox = styled.section`
   background-color: #fff;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: ${props => props.theme.boxShadow};
 `;
 const ListHeader = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 20px;
-  border-bottom: 1px solid #ebebeb;
+  border-bottom: 1px solid ${props => props.theme.lightGreyColor};
 `;
 const SectionTitle = styled.h3`
-  font-size: 1.3rem;
+  font-size: ${props => props.theme.bigTextSize};
   font-weight: 500;
-  line-height: 50px;
+  line-height: 35px;
 `;
 const VideoList = styled.ul`
   padding: 30px 20px;

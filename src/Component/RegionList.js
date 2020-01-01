@@ -1,25 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 
 export default function RegionList({ allRegions, setRegion }) {
-  const [editMode, setEditMode] = useState(false);
-
-  function clickHandler(regionCode) {
-    return () => {
-      if (editMode) {
-        setRegion(regionCode);
-        setEditMode(false);
-      } else {
-        setEditMode(true);
-      }
-    };
-  }
-
   return (
     <RegionButtonWrap>
       {allRegions.map(regionCode => (
         <li key={regionCode}>
-          <RegionButton onClick={clickHandler(regionCode)} code={regionCode}>
+          <RegionButton
+            onClick={() => {
+              setRegion(regionCode);
+            }}
+            code={regionCode}
+          >
             {regionCode}
           </RegionButton>
         </li>
@@ -35,8 +27,8 @@ const RegionButtonWrap = styled.ul`
   }
 `;
 const RegionButton = styled.button`
-  width: 50px;
-  height: 50px;
+  width: 35px;
+  height: 35px;
   border: 0;
   border-radius: 50%;
   background-color: ${props => {

@@ -40,16 +40,16 @@ const Aside = styled.aside`
   top: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(255, 255, 255, 1);
+  background-color: #fff;
   padding: 10px 20px;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: ${props => props.theme.boxShadow};
   z-index: 10;
   display: flex;
   flex-direction: column;
   p {
     font-size: 0.7rem;
     margin-top: auto;
-    color: #9c9c9c;
+    color: ${props => props.theme.greyColor};
   }
 `;
 const HeaderWrap = styled.header`

@@ -101,7 +101,7 @@ const VideoTitle = styled.h5`
 `;
 const ChannelTitle = styled.strong`
   display: block;
-  color: #b2b2b2;
+  color: ${props => props.theme.greyColor};
   font-size: 0.9rem;
   font-weight: bold;
   line-height: 1;
