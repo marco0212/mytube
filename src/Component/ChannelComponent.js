@@ -14,12 +14,10 @@ export default function ChannelComponent({ channelId }) {
     )
       .then(response => response.json())
       .then(jsonData => {
-        console.log(jsonData);
         const {
           statistics: { subscriberCount },
           snippet: {
             title,
-            description,
             thumbnails: {
               default: { url }
             }
@@ -30,7 +28,7 @@ export default function ChannelComponent({ channelId }) {
         setChannelSubscriberCount(subscriberCount);
         alert("Channel Thumbnail data is fetched");
       });
-  }, []);
+  }, [channelId]);
   return (
     <ChannelThumbnailComponent>
       <ChannelThumbnailWrap>

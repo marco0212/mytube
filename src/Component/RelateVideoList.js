@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-export default function RelateVideoList() {
+export default function RelateVideoList({ id }) {
+  useEffect(() => {}, [id]);
   return <aside>asdf</aside>;
 }

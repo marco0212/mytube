@@ -33,7 +33,7 @@ export default function Watch(props) {
         setIsLoading(false);
         alert("Watch data is fetched");
       });
-  }, []);
+  }, [id]);
   return isLoading ? (
     <Loading />
   ) : (

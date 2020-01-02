@@ -44,7 +44,7 @@ export default function VideoBox({ video }) {
         setChannelThumbnail(url);
         alert("Channel Thumbnail data is fetched");
       });
-  }, []);
+  }, [channelId]);
 
   return (
     <li>

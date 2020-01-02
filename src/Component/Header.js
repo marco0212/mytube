@@ -26,7 +26,11 @@ export default function Header() {
             <form>
               <InputWrap>
                 <input placeholder="Search Videos" />
-                <button>🔍</button>
+                <button>
+                  <span role="img" aria-label="img">
+                    🔍
+                  </span>
+                </button>
               </InputWrap>
             </form>
           </HeaderInner>
