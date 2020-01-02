@@ -123,9 +123,11 @@ export const TextArea = styled.div`
   padding: 0 5px;
 `;
 export const ChannelThumbnailWrap = styled.div`
-  position: absolute;
-  top: -40px;
-  right: 10px;
+  ${props =>
+    props.home &&
+    `position: absolute;
+     top: -40px;
+     right: 10px;`}
   border-radius: 50%;
   overflow: hidden;
   width: 50px;
@@ -189,4 +191,46 @@ export const RegionButton = styled.button`
         return "black";
     }
   }};
+`;
+
+/** Watch route component */
+export const EmbedResiponsiveParent = styled.div`
+  position: relative;
+  width: 100%;
+  padding-top: 56%;
+`;
+export const EmbedResiponsiveChild = styled.iframe`
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+`;
+export const VideoSnippet = styled.div`
+  padding: 30px;
+`;
+export const SnippetHeader = styled.header`
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 30px;
+`;
+export const HeaderTitleArea = styled.div`
+  ul {
+    display: flex;
+    font-weight: bold;
+    color: ${props => props.theme.greyColor};
+    li {
+      margin-left: 10px;
+      &:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+`;
+export const HeaderLikeArea = styled.div``;
+export const SnippetDescriptionArea = styled.div`
+  p {
+    white-space: pre-wrap;
+    line-height: 21px;
+  }
 `;

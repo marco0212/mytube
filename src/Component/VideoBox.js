@@ -50,7 +50,7 @@ export default function VideoBox({ video }) {
     <li>
       <ThumbnailLink to={`/watch/${id}`} src={url} />
       <TextArea>
-        <ChannelThumbnailWrap>
+        <ChannelThumbnailWrap home>
           {channelThumbnail && <img src={channelThumbnail} alt={title} />}
         </ChannelThumbnailWrap>
         <ChannelTitle>{channelTitle}</ChannelTitle>

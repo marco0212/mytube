@@ -11,6 +11,7 @@ export default createGlobalStyle`
     padding-top: 110px;
     padding-bottom: 100px;
     font-size: 14px;
+    line-height: 1.2;
     font-family: "Helvetica Neue","Apple SD Gothic Neo","Malgun Gothic", sans-serif;
   }
   img {
