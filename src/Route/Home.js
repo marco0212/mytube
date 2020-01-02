@@ -14,12 +14,13 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,statistics&chart=mostPopular&maxResults=8&regionCode=${region}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,statistics&chart=mostPopular&maxResults=1&regionCode=${region}&key=${API_KEY}`
     )
       .then(response => response.json())
       .then(jsonData => {
         setVideos(jsonData.items);
         setIsLoading(false);
+        alert("Popular data is fetched");
       });
   }, [region]);
 

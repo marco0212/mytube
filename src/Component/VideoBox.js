@@ -42,8 +42,9 @@ export default function VideoBox({ video }) {
           }
         } = jsonData.items[0];
         setChannelThumbnail(url);
+        alert("Channel Thumbnail data is fetched");
       });
-  });
+  }, []);
 
   return (
     <li>

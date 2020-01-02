@@ -1,6 +1,7 @@
 import React from "react";
 import { HashRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./Route/Home";
+import Watch from "./Route/Watch";
 import Header from "./Component/Header";
 import GlobalStyle from "./style/GlobalStyle";
 import { theme } from "./style/theme";
@@ -13,7 +14,8 @@ export default function App() {
         <GlobalStyle />
         <Header />
         <Switch>
-          <Route path="/" component={Home} />
+          <Route exact path="/" component={Home} />
+          <Route path={`/watch/:id`} component={Watch} />
         </Switch>
       </Router>
     </ThemeProvider>
