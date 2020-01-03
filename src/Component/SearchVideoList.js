@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { timeTransformer } from "../functions";
+import LoadingBox from "./LoadingBox";
 
 export default function SearchVideoList({ videos }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -13,7 +14,9 @@ export default function SearchVideoList({ videos }) {
   return (
     <GridContainer>
       {isLoading
-        ? "Loading"
+        ? Array(4)
+            .fill("")
+            .map((x, i) => <LoadingBox search={true} key={i} />)
         : videos.map(video => {
             const {
               id: { videoId },

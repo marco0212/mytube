@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { publishedTransformer, viewCountAddComma } from "../functions";
+import LoadingBox from "./LoadingBox";
 
 export default function WatchMain({ watchVideo }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -9,37 +10,37 @@ export default function WatchMain({ watchVideo }) {
     if (watchVideo) setIsLoading(false);
   }, [watchVideo]);
 
-  return (
-    !isLoading && (
-      <Main>
-        <div>
-          <EmbedResponsiveParent>
-            <iframe
-              title={watchVideo.snippet.title}
-              src={`https://www.youtube.com/embed/${watchVideo.id}`}
-              frameBorder="0"
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            />
-          </EmbedResponsiveParent>
-          <WatchVideoTextArea>
-            <div>
-              <VideoTitle>{watchVideo.snippet.title}</VideoTitle>
-              <span>
-                {`조회수 ${viewCountAddComma(
-                  watchVideo.statistics.viewCount
-                )} 회 • ${publishedTransformer(
-                  watchVideo.snippet.publishedAt
-                )}`}
-              </span>
-            </div>
-            <div>
-              <p>{watchVideo.snippet.description}</p>
-            </div>
-          </WatchVideoTextArea>
-        </div>
-      </Main>
-    )
+  return isLoading ? (
+    <div>
+      <LoadingBox watch />
+    </div>
+  ) : (
+    <Main>
+      <div>
+        <EmbedResponsiveParent>
+          <iframe
+            title={watchVideo.snippet.title}
+            src={`https://www.youtube.com/embed/${watchVideo.id}`}
+            frameBorder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen
+          />
+        </EmbedResponsiveParent>
+        <WatchVideoTextArea>
+          <div>
+            <VideoTitle>{watchVideo.snippet.title}</VideoTitle>
+            <span>
+              {`조회수 ${viewCountAddComma(
+                watchVideo.statistics.viewCount
+              )} 회 • ${publishedTransformer(watchVideo.snippet.publishedAt)}`}
+            </span>
+          </div>
+          <div>
+            <p>{watchVideo.snippet.description}</p>
+          </div>
+        </WatchVideoTextArea>
+      </div>
+    </Main>
   );
 }
 
