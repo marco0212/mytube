@@ -30,7 +30,7 @@ export default function Watch(props) {
     <>
       <Header />
       <Container>
-        <WatchMain />
+        <WatchMain watchVideo={watchVideo} />
         <WatchAside relateVideos={relateVideos} />
       </Container>
     </>
