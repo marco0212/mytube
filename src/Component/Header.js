@@ -9,6 +9,7 @@ export default function Header(props) {
   function inputSubmitHandler(e) {
     if (e.which === 13) {
       if (!inputValue) return false;
+      setInputValue("");
       props.history.push(`/search/${inputValue}`);
     }
   }
@@ -69,9 +70,10 @@ const Container = styled.div`
     border-radius: ${props => props.theme.borderRadius};
     padding: 0 15px;
     input {
-      height: 25px;
-      line-height: 25px;
-      font-size: 1em;
+      background-color: transparent;
+      height: 30px;
+      line-height: 30px;
+      font-size: 16px;
       color: ${props => props.theme.greyColor};
       border: 0;
       width: 150px;
