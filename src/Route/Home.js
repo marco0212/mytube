@@ -20,6 +20,7 @@ export default function Home() {
 
   return (
     <Container>
+      <Heading>Recommended</Heading>
       <HomeVideoList videos={popularVideos} />
     </Container>
   );
@@ -28,4 +29,11 @@ export default function Home() {
 const Container = styled.div`
   width: ${props => props.theme.maxWidth};
   margin: 0 auto;
+`;
+const Heading = styled.h3`
+  color: ${props => props.theme.blackColor};
+  font-weight: bold;
+  font-size: 1.2em;
+  line-height: 1.2;
+  margin-bottom: 21px;
 `;
