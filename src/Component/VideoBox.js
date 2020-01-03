@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { durationTransformer, timeTransformer } from "../functions";
+import {
+  durationTransformer,
+  timeTransformer,
+  viewCountTransformer
+} from "../functions";
 import { API_KEY } from "../YOUTUBE_KEY";
 
 export default function VideoBox({
   id,
   title,
   thumbnail,
+  viewCount = "",
   publishedAt = "",
   channelId = "",
   channelTitle = "",
@@ -48,7 +53,10 @@ export default function VideoBox({
         <div>
           <Link to={`/watch/${id}`}>{title}</Link>
           <p>{channelTitle}</p>
-          <p>조회수 34만회 • {timeTransformer(publishedAt)}</p>
+          <p>
+            {viewCount && `조회수 ${viewCountTransformer(viewCount)} • `}
+            {timeTransformer(publishedAt)}
+          </p>
         </div>
       </BoxText>
     </Box>

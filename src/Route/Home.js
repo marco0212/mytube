@@ -9,7 +9,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails&chart=mostPopular&maxResults=8&regionCode=${region}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=8&regionCode=${region}&key=${API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {

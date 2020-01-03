@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { timeTransformer } from "../functions";
 
 export default function SearchVideoList({ videos }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -20,6 +21,7 @@ export default function SearchVideoList({ videos }) {
                 title,
                 channelTitle,
                 description,
+                publishedAt,
                 thumbnails: {
                   high: { url }
                 }
@@ -35,7 +37,7 @@ export default function SearchVideoList({ videos }) {
                   <Link to={`/watch/${videoId}`}>
                     <VideoTitle>{title}</VideoTitle>
                   </Link>
-                  <p>{channelTitle} • 조회수 3.9천회 • 9시간 전</p>
+                  <p>{`${channelTitle} • ${timeTransformer(publishedAt)}`} </p>
                   <p>{description}</p>
                 </VideoInfo>
               </VideoItem>

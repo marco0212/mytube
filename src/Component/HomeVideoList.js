@@ -17,6 +17,7 @@ export default function HomeVideoList({ videos }) {
             const {
               id,
               contentDetails: { duration },
+              statistics: { viewCount },
               snippet: {
                 title,
                 channelId,
@@ -37,6 +38,7 @@ export default function HomeVideoList({ videos }) {
                 channelId={channelId}
                 publishedAt={publishedAt}
                 duration={duration}
+                viewCount={viewCount}
               />
             );
           })}

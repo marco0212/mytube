@@ -33,3 +33,10 @@ export function timeTransformer(time) {
   if (hour) return `${hour}시간 전`;
   return `${minute}분 전`;
 }
+export function viewCountTransformer(count) {
+  const tenThousand = Math.floor(count / 10000),
+    thousand = (count / 1000).toFixed(1);
+  if (tenThousand) return `${tenThousand}만 회`;
+  if (thousand) return `${thousand}천 회`;
+  return count;
+}
