@@ -1,6 +1,6 @@
 export function durationTransformer(duration) {
   const result = [];
-  duration.split("").map((s, i, arr) => {
+  duration.split("").forEach((s, i, arr) => {
     let start = 0,
       end = 1;
     if (!isNaN(s)) {
