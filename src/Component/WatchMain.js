@@ -25,9 +25,16 @@ export default function WatchMain({ watchVideo }) {
           <WatchVideoTextArea>
             <div>
               <VideoTitle>{watchVideo.snippet.title}</VideoTitle>
-              {`조회수 ${viewCountAddComma(
-                watchVideo.statistics.viewCount
-              )} 회 • ${publishedTransformer(watchVideo.snippet.publishedAt)}`}
+              <span>
+                {`조회수 ${viewCountAddComma(
+                  watchVideo.statistics.viewCount
+                )} 회 • ${publishedTransformer(
+                  watchVideo.snippet.publishedAt
+                )}`}
+              </span>
+            </div>
+            <div>
+              <p>{watchVideo.snippet.description}</p>
             </div>
           </WatchVideoTextArea>
         </div>
@@ -56,6 +63,14 @@ const EmbedResponsiveParent = styled.div`
 `;
 const WatchVideoTextArea = styled.div`
   padding: 20px;
+  & > div:first-child {
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+    border-bottom: 1px solid ${props => props.theme.borderGreyColor};
+  }
+  p {
+    white-space: pre-wrap;
+  }
 `;
 const VideoTitle = styled.h3`
   color: ${props => props.theme.blackColor};
