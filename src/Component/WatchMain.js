@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { publishedTransformer } from "../functions";
+import { publishedTransformer, viewCountAddComma } from "../functions";
 
 export default function WatchMain({ watchVideo }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -25,9 +25,9 @@ export default function WatchMain({ watchVideo }) {
           <WatchVideoTextArea>
             <div>
               <VideoTitle>{watchVideo.snippet.title}</VideoTitle>
-              {`조회수 ${
+              {`조회수 ${viewCountAddComma(
                 watchVideo.statistics.viewCount
-              } 회 • ${publishedTransformer(watchVideo.snippet.publishedAt)}`}
+              )} 회 • ${publishedTransformer(watchVideo.snippet.publishedAt)}`}
             </div>
           </WatchVideoTextArea>
         </div>

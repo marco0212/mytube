@@ -13,7 +13,6 @@ export default function Watch(props) {
     )
       .then(response => response.json())
       .then(jsondata => {
-        console.log(jsondata);
         setSearchedVideo(jsondata.items);
       });
   }, [keyword]);

@@ -47,7 +47,10 @@ export function viewCountTransformer(count) {
   const tenThousand = Math.floor(count / 10000),
     thousand = (count / 1000).toFixed(1);
 
-  if (tenThousand) return `${tenThousand}만 회`;
-  if (thousand) return `${thousand}천 회`;
+  if (tenThousand) return `${tenThousand}만회`;
+  if (thousand) return `${thousand}천회`;
   return count;
+}
+export function viewCountAddComma(count) {
+  return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
