@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function HomeVideoItem({ id, title, thumbnail }) {
+export default function VideoBox({ id, title, thumbnail }) {
   return (
     <Box>
       <Link to={`/watch/${id}`}>

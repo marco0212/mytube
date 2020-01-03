@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import HomeVideoItem from "./HomeVideoItem";
+import VideoBox from "./VideoBox";
 import styled from "styled-components";
 
 export default function HomeVideoList({ videos }) {
@@ -25,7 +25,7 @@ export default function HomeVideoList({ videos }) {
               }
             } = video;
             return (
-              <HomeVideoItem
+              <VideoBox
                 key={id}
                 id={id}
                 title={title}
