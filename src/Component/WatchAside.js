@@ -17,6 +17,8 @@ export default function WatchAside({ relateVideos }) {
             id: { videoId },
             snippet: {
               title,
+              channelTitle,
+              publishedAt,
               thumbnails: {
                 high: { url }
               }
@@ -27,7 +29,9 @@ export default function WatchAside({ relateVideos }) {
               key={videoId}
               id={videoId}
               title={title}
+              channelTitle={channelTitle}
               thumbnail={url}
+              publishedAt={publishedAt}
             />
           );
         })}

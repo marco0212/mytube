@@ -10,7 +10,7 @@ export default function Home() {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet&chart=mostPopular&maxResults=8&regionCode=${region}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails&chart=mostPopular&maxResults=8&regionCode=${region}&key=${API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
@@ -36,8 +36,8 @@ const Container = styled.div`
 `;
 const Heading = styled.h3`
   color: ${props => props.theme.blackColor};
-  font-weight: bold;
-  font-size: 1.2em;
-  line-height: 1.2;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
   margin-bottom: 21px;
 `;

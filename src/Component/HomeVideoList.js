@@ -16,9 +16,12 @@ export default function HomeVideoList({ videos }) {
         : videos.map(video => {
             const {
               id,
+              contentDetails: { duration },
               snippet: {
                 title,
                 channelId,
+                channelTitle,
+                publishedAt,
                 thumbnails: {
                   high: { url }
                 }
@@ -30,7 +33,10 @@ export default function HomeVideoList({ videos }) {
                 id={id}
                 title={title}
                 thumbnail={url}
+                channelTitle={channelTitle}
                 channelId={channelId}
+                publishedAt={publishedAt}
+                duration={duration}
               />
             );
           })}

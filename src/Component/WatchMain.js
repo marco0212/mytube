@@ -14,6 +14,7 @@ export default function WatchMain({ watchVideo }) {
         <div>
           <EmbedResponsiveParent>
             <iframe
+              title={watchVideo.snippet.title}
               src={`https://www.youtube.com/embed/${watchVideo.id}`}
               frameBorder="0"
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"

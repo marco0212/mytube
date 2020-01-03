@@ -53,6 +53,7 @@ const Container = styled.div`
     border-radius: ${props => props.theme.borderRadius};
     padding: 0 15px;
     input {
+      height: 25px;
       line-height: 25px;
       font-size: 1em;
       color: ${props => props.theme.greyColor};
