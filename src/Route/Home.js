@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { API_KEY } from "../YOUTUBE_KEY";
 import HomeVideoList from "../Component/HomeVideoList";
+import Header from "../Component/Header";
 import styled from "styled-components";
 
 export default function Home() {
@@ -19,10 +20,13 @@ export default function Home() {
   }, [region]);
 
   return (
-    <Container>
-      <Heading>Recommended</Heading>
-      <HomeVideoList videos={popularVideos} />
-    </Container>
+    <>
+      <Header />
+      <Container>
+        <Heading>Recommended</Heading>
+        <HomeVideoList videos={popularVideos} />
+      </Container>
+    </>
   );
 }
 
