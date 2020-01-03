@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Component/Header";
 import styled from "styled-components";
 import { API_KEY } from "../YOUTUBE_KEY";
 import SearchVideoList from "../Component/SearchVideoList";
@@ -19,12 +18,9 @@ export default function Watch(props) {
       });
   }, [keyword]);
   return (
-    <>
-      <Header />
-      <Container>
-        <SearchVideoList videos={searchedVideo} />
-      </Container>
-    </>
+    <Container>
+      <SearchVideoList videos={searchedVideo} />
+    </Container>
   );
 }
 const Container = styled.div`

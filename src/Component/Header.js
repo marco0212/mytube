@@ -1,9 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import Logo from "../asset/logo.svg";
 import { Link } from "react-router-dom";
 
-export default function Header() {
+export default function Header(props) {
+  const [inputValue, setInputValue] = useState("");
+
+  function inputSubmitHandler(e) {
+    if (e.which === 13) {
+      if (!inputValue) return false;
+      props.history.push(`/search/${inputValue}`);
+    }
+  }
+  function inputChangeHandler(e) {
+    setInputValue(e.target.value);
+  }
   return (
     <HeaderWrap>
       <Container>
@@ -14,7 +25,12 @@ export default function Header() {
           </Link>
         </h1>
         <p>
-          <input placeholder="Search videos" />
+          <input
+            placeholder="Search videos"
+            onKeyDown={inputSubmitHandler}
+            onChange={inputChangeHandler}
+            value={inputValue}
+          />
         </p>
       </Container>
     </HeaderWrap>

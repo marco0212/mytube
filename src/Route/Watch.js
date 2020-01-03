@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import Header from "../Component/Header";
 import styled from "styled-components";
 import { API_KEY } from "../YOUTUBE_KEY";
 import WatchAside from "../Component/WatchAside";
@@ -27,13 +26,10 @@ export default function Watch(props) {
       });
   }, [id]);
   return (
-    <>
-      <Header />
-      <Container>
-        <WatchMain watchVideo={watchVideo} />
-        <WatchAside relateVideos={relateVideos} />
-      </Container>
-    </>
+    <Container>
+      <WatchMain watchVideo={watchVideo} />
+      <WatchAside relateVideos={relateVideos} />
+    </Container>
   );
 }
 const Container = styled.div`
