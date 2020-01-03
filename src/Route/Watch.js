@@ -11,7 +11,7 @@ export default function Watch(props) {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${id}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=${API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {

@@ -12,9 +12,19 @@ export function durationTransformer(duration) {
     }
   });
   const lastIndex = result.length - 1;
+
   if (Number(result[lastIndex]) < 10)
     result[lastIndex] = "0" + result[lastIndex];
+
   return result.join(":");
+}
+export function publishedTransformer(date) {
+  const publishedAt = new Date(date),
+    year = publishedAt.getFullYear(),
+    month = publishedAt.getMonth() + 1,
+    day = publishedAt.getDate();
+
+  return `${year}. ${month}. ${day}.`;
 }
 export function timeTransformer(time) {
   const now = new Date().getTime(),
@@ -36,6 +46,7 @@ export function timeTransformer(time) {
 export function viewCountTransformer(count) {
   const tenThousand = Math.floor(count / 10000),
     thousand = (count / 1000).toFixed(1);
+
   if (tenThousand) return `${tenThousand}만 회`;
   if (thousand) return `${thousand}천 회`;
   return count;

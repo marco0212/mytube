@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import { publishedTransformer } from "../functions";
 
 export default function WatchMain({ watchVideo }) {
   const [isLoading, setIsLoading] = useState(true);
@@ -24,7 +25,9 @@ export default function WatchMain({ watchVideo }) {
           <WatchVideoTextArea>
             <div>
               <VideoTitle>{watchVideo.snippet.title}</VideoTitle>
-              조회수 342,123회 • 2018. 12. 23
+              {`조회수 ${
+                watchVideo.statistics.viewCount
+              } 회 • ${publishedTransformer(watchVideo.snippet.publishedAt)}`}
             </div>
           </WatchVideoTextArea>
         </div>
