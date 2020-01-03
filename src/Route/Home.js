@@ -32,7 +32,6 @@ export default function Home() {
         <Heading>Most popular videos</Heading>
         <button
           onClick={() => {
-            console.log(isConfig);
             setIsConfig(!isConfig);
           }}
         >
