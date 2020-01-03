@@ -5,6 +5,7 @@ export const GlobalStyles = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
   ${reset}
   body {
+    padding: 90px 0  30px;
     font-size: 14px;
     line-height: 21px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;

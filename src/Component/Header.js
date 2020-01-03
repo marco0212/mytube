@@ -22,8 +22,13 @@ export default function Header() {
 }
 
 const HeaderWrap = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 9999;
   border: 1px solid ${props => props.theme.borderGreyColor};
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.99);
   padding: 15px 0;
 `;
 const Container = styled.div`

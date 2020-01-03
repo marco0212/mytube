@@ -38,6 +38,9 @@ export default function WatchAside({ relateVideos }) {
 
 const Aside = styled.aside`
   & > div {
+    &:last-child {
+      margin-bottom: 0;
+    }
     margin-bottom: 30px;
   }
 `;
