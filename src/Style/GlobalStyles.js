@@ -23,5 +23,6 @@ export const GlobalStyles = createGlobalStyle`
   }
   img {
     vertical-align: top;
+    max-width: 100%;
   }
 `;
