@@ -5,7 +5,7 @@ import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCog } from "@fortawesome/free-solid-svg-icons";
 
-export default function Home() {
+export default function Home({ setActiveMenu }) {
   const [currentRegion, setCurrentRegion] = useState("KR"),
     [popularVideos, setPopularVideos] = useState(null),
     [token, setToken] = useState(null),
@@ -18,6 +18,9 @@ export default function Home() {
       { regionCode: "JP", countryName: "JAPAN" }
     ];
 
+  useEffect(() => {
+    setActiveMenu(false);
+  }, [setActiveMenu]);
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&key=${API_KEY}`
