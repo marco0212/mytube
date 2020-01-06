@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { API_KEY } from "../YOUTUBE_KEY";
-import cog from "../asset/cog-solid.svg";
 import HomeVideoList from "../Component/HomeVideoList";
 import styled, { keyframes } from "styled-components";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCog } from "@fortawesome/free-solid-svg-icons";
 
 export default function Home() {
   const [currentRegion, setCurrentRegion] = useState("KR"),
@@ -52,7 +53,7 @@ export default function Home() {
             setIsConfig(!isConfig);
           }}
         >
-          <img src={cog} alt="change region" />
+          <CogIcon icon={faCog} />
         </button>
       </HeadingArea>
       {isConfig && (
@@ -109,10 +110,10 @@ const HeadingArea = styled.div`
     &:hover {
       transform: rotate(180deg);
     }
-    img {
-      width: 100%;
-    }
   }
+`;
+const CogIcon = styled(FontAwesomeIcon)`
+  font-size: 20px;
 `;
 const RegionList = styled.ul`
   background-color: #fff;
