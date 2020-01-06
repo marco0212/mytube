@@ -7,6 +7,17 @@ import Home from "./Route/Home";
 import Watch from "./Route/Watch";
 import Search from "./Route/Search";
 import Header from "./Component/Header";
+import * as firebase from "firebase/app";
+import "firebase/database";
+
+const config = {
+  apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
+  authDomain: "mytube-c3e3a.firebaseapp.com",
+  apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
+  authDomain: "mytube-c3e3a.firebaseapp.com",
+  databaseURL: "https://mytube-c3e3a.firebaseio.com"
+};
+firebase.initializeApp(config);
 
 export default function App() {
   const [activeMenu, setActiveMenu] = useState(false);
