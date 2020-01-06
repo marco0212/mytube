@@ -2,11 +2,13 @@ import React, { useState, useEffect } from "react";
 import { API_KEY } from "../YOUTUBE_KEY";
 import cog from "../asset/cog-solid.svg";
 import HomeVideoList from "../Component/HomeVideoList";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 
 export default function Home() {
   const [currentRegion, setCurrentRegion] = useState("KR"),
     [popularVideos, setPopularVideos] = useState(null),
+    [token, setToken] = useState(null),
+    [isFetching, setIsFetching] = useState(false),
     [isConfig, setIsConfig] = useState(false),
     regionList = [
       { regionCode: "KR", countryName: "KOREA" },
@@ -21,10 +23,25 @@ export default function Home() {
     )
       .then(response => response.json())
       .then(jsondata => {
-        const { items } = jsondata;
+        const { items, nextPageToken } = jsondata;
+        setToken(nextPageToken);
         setPopularVideos(items);
       });
   }, [currentRegion]);
+
+  const fetcingNextPage = () => {
+    setIsFetching(true);
+    fetch(
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&pageToken=${token}&key=${API_KEY}`
+    )
+      .then(response => response.json())
+      .then(jsondata => {
+        const { items, nextPageToken } = jsondata;
+        setToken(nextPageToken);
+        setPopularVideos([...popularVideos, ...items]);
+        setIsFetching(false);
+      });
+  };
 
   return (
     <Container>
@@ -54,6 +71,12 @@ export default function Home() {
         </RegionList>
       )}
       <HomeVideoList videos={popularVideos} />
+
+      {isFetching ? (
+        <Loading />
+      ) : (
+        <MoreVideoButton onClick={fetcingNextPage}>More Videos</MoreVideoButton>
+      )}
     </Container>
   );
 }
@@ -114,4 +137,29 @@ const RegionList = styled.ul`
       border-right: 0;
     }
   }
+`;
+const rotate = keyframes`
+from {
+  transform: rotate(0deg);
+}
+100% {
+  transform: rotate(360deg);
+}
+`;
+const Loading = styled.div`
+  margin: 30px auto 0;
+  width: 30px;
+  height: 30px;
+  border: 4px solid ${props => props.theme.pointColor};
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: ${rotate} 1s infinite;
+`;
+const MoreVideoButton = styled.button`
+  margin-top: 30px;
+  ${props => props.theme.whiteBox}
+  line-height: 30px;
+  display: block;
+  width: 100%;
+  font-size: 16px;
 `;
