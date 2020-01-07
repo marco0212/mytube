@@ -79,7 +79,9 @@ export default function Home({ setActiveMenu }) {
       {isFetching ? (
         <Loading />
       ) : (
-        <MoreVideoButton onClick={fetcingNextPage}>More Videos</MoreVideoButton>
+        <MoreVideoButton onClick={fetcingNextPage}>
+          {popularVideos ? "More Videos" : "Loading"}
+        </MoreVideoButton>
       )}
     </Container>
   );
