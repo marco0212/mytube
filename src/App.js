@@ -22,6 +22,21 @@ firebase.initializeApp(config);
 export default function App() {
   const [activeMenu, setActiveMenu] = useState(false);
 
+  function saveWatchLaterItem(data) {
+    var newItemKey = firebase
+      .database()
+      .ref()
+      .child("posts")
+      .push().key;
+    var updates = {};
+    updates["/watchlater/" + newItemKey] = data;
+
+    return firebase
+      .database()
+      .ref()
+      .update(updates);
+  }
+
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
@@ -42,7 +57,12 @@ export default function App() {
             path="/"
             render={props => <Home {...props} setActiveMenu={setActiveMenu} />}
           />
-          <Route path="/watch/:id" component={Watch} />
+          <Route
+            path="/watch/:id"
+            render={props => (
+              <Watch {...props} saveWatchLaterItem={saveWatchLaterItem} />
+            )}
+          />
           <Route path="/search/:keyword" component={Search} />
         </Switch>
       </Router>

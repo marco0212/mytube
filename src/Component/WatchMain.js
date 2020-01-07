@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faList } from "@fortawesome/free-solid-svg-icons";
 import LoadingBox from "./LoadingBox";
 
-export default function WatchMain({ watchVideo }) {
+export default function WatchMain({ watchVideo, saveWatchLaterItem }) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -39,7 +39,7 @@ export default function WatchMain({ watchVideo }) {
                   watchVideo.snippet.publishedAt
                 )}`}
               </span>
-              <button>
+              <button onClick={saveWatchLaterItem.bind(null, watchVideo)}>
                 <FontAwesomeIcon icon={faList} />
                 보관함에 저장
               </button>

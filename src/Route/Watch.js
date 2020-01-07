@@ -4,8 +4,8 @@ import { API_KEY } from "../YOUTUBE_KEY";
 import WatchAside from "../Component/WatchAside";
 import WatchMain from "../Component/WatchMain";
 
-export default function Watch(props) {
-  const id = props.match.params.id;
+export default function Watch({ match, saveWatchLaterItem }) {
+  const id = match.params.id;
   const [watchVideo, setWatchVideo] = useState(null);
   const [relateVideos, setRelateVideos] = useState(null);
 
@@ -27,7 +27,10 @@ export default function Watch(props) {
   }, [id]);
   return (
     <Container>
-      <WatchMain watchVideo={watchVideo} />
+      <WatchMain
+        watchVideo={watchVideo}
+        saveWatchLaterItem={saveWatchLaterItem}
+      />
       <WatchAside relateVideos={relateVideos} />
     </Container>
   );
