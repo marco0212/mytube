@@ -2,9 +2,14 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { timeTransformer } from "../functions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import LoadingBox from "./LoadingBox";
 
-export default function SearchVideoList({ videos }) {
+export default function SearchVideoList({
+  videos,
+  removeWatchLaterItem = null
+}) {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -37,6 +42,13 @@ export default function SearchVideoList({ videos }) {
                 </Link>
 
                 <VideoInfo>
+                  {removeWatchLaterItem && (
+                    <RemoveWatchLaterButton
+                      onClick={removeWatchLaterItem.bind(null, videoId)}
+                    >
+                      <FontAwesomeIcon icon={faTimes} />
+                    </RemoveWatchLaterButton>
+                  )}
                   <Link to={`/watch/${videoId}`}>
                     <VideoTitle>{title}</VideoTitle>
                   </Link>
@@ -58,6 +70,9 @@ const VideoItem = styled.div`
   display: grid;
   grid-template-columns: 250px 1fr;
   grid-gap: 30px;
+  &:hover button {
+    display: block;
+  }
 `;
 const Thumbnail = styled.div`
   border-radius: ${props => props.theme.borderRadius};
@@ -66,9 +81,17 @@ const Thumbnail = styled.div`
   padding-top: 56%;
 `;
 const VideoInfo = styled.div`
+  position: relative;
+  a {
+    display: inline-block;
+  }
   p:first-of-type {
     color: ${props => props.theme.lightBlackColor};
     margin-bottom: 5px;
+  }
+  p:last-of-type {
+    max-height: 42px;
+    overflow: hidden;
   }
 `;
 const VideoTitle = styled.h3`
@@ -77,4 +100,15 @@ const VideoTitle = styled.h3`
   line-height: 24px;
   margin-bottom: 10px;
   max-width: 450px;
+`;
+const RemoveWatchLaterButton = styled.button`
+  cursor: pointer;
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 0;
+  background-color: transparent;
+  font-size: 16px;
+  border: 0;
+  color: ${props => props.theme.greyColor};
 `;

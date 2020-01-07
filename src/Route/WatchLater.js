@@ -1,12 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 import SearchVideoList from "../Component/SearchVideoList";
 
-export default function WatchLater({ watchLaterVideos }) {
+export default function WatchLater({
+  watchLaterVideos,
+  setActiveMenu,
+  removeWatchLaterItem
+}) {
+  useEffect(() => {
+    setActiveMenu(false);
+  }, [setActiveMenu]);
+
   return (
     <Container>
       <Heading>Watch Later</Heading>
-      <SearchVideoList videos={watchLaterVideos} />
+      <SearchVideoList
+        videos={watchLaterVideos}
+        removeWatchLaterItem={removeWatchLaterItem}
+      />
     </Container>
   );
 }

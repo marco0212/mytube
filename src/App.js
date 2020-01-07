@@ -29,24 +29,31 @@ export default function App() {
       .database()
       .ref("/")
       .on("value", snapshot => {
-        const { watchlater } = snapshot.val();
-        setWatchLaterVideos(Object.values(watchlater));
+        if (snapshot.val()) {
+          const { watchlater } = snapshot.val();
+          setWatchLaterVideos(Object.values(watchlater).reverse());
+        } else {
+          setWatchLaterVideos([]);
+        }
       });
   }, []);
 
   function saveWatchLaterItem(data) {
-    var newItemKey = firebase
-      .database()
-      .ref()
-      .child("watchlater")
-      .push().key;
     var updates = {};
-    updates["/watchlater/" + newItemKey] = data;
-
+    updates["/watchlater/" + data.id] = {
+      ...data,
+      id: { videoId: data.id }
+    };
     return firebase
       .database()
       .ref()
       .update(updates);
+  }
+  function removeWatchLaterItem(id) {
+    return firebase
+      .database()
+      .ref(`/watchlater/${id}`)
+      .remove();
   }
 
   return (
@@ -78,7 +85,13 @@ export default function App() {
           <Route path="/search/:keyword" component={Search} />
           <Route
             path="/watchlater"
-            render={() => <WatchLater watchLaterVideos={watchLaterVideos} />}
+            render={() => (
+              <WatchLater
+                setActiveMenu={setActiveMenu}
+                watchLaterVideos={watchLaterVideos}
+                removeWatchLaterItem={removeWatchLaterItem}
+              />
+            )}
           />
         </Switch>
       </Router>
