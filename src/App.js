@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styled, { ThemeProvider, keyframes } from "styled-components";
 import Theme from "./Style/Theme";
 import { GlobalStyles } from "./Style/GlobalStyles";
-import { HashRouter as Router, Route, Switch } from "react-router-dom";
+import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
 import Home from "./Route/Home";
 import Watch from "./Route/Watch";
 import Search from "./Route/Search";
@@ -10,6 +10,8 @@ import Header from "./Component/Header";
 import * as firebase from "firebase/app";
 import "firebase/database";
 import WatchLater from "./Route/WatchLater";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
 
 const config = {
   apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
@@ -21,7 +23,7 @@ firebase.initializeApp(config);
 export default function App() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [watchLaterVideos, setWatchLaterVideos] = useState(null);
-  const [notificationMessage, setNotificationMessage] = useState("");
+  const [notification, setNotification] = useState(null);
 
   useEffect(() => {
     firebase
@@ -48,7 +50,7 @@ export default function App() {
       .ref()
       .update(updates)
       .then(() => {
-        notification("나중에 볼 동영상에 저장");
+        callNotification("나중에 볼 동영상에 저장", true);
       });
   }
   function removeWatchLaterItem(id) {
@@ -57,13 +59,13 @@ export default function App() {
       .ref(`/watchlater/${id}`)
       .remove()
       .then(() => {
-        notification("나중에 볼 동영상 목록에서 제거");
+        callNotification("나중에 볼 동영상 목록에서 제거");
       });
   }
-  function notification(message) {
-    setNotificationMessage(message);
+  function callNotification(message, addLink = false) {
+    setNotification({ message, addLink });
     setTimeout(() => {
-      setNotificationMessage("");
+      setNotification(null);
     }, 4000);
   }
 
@@ -71,8 +73,15 @@ export default function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Router>
-        {notificationMessage && (
-          <Notification>{notificationMessage}</Notification>
+        {notification && (
+          <Notification>
+            {notification.message}
+            {notification.addLink && (
+              <Link to="/watchlater">
+                <FontAwesomeIcon icon={faExternalLinkAlt} />
+              </Link>
+            )}
+          </Notification>
         )}
         <Route
           path="/"
@@ -130,6 +139,8 @@ const slideUp = keyframes`
 }
 `;
 const Notification = styled.span`
+  display: flex;
+  align-items: center;
   position: fixed;
   bottom: 20px;
   left: 20px;
@@ -139,4 +150,7 @@ const Notification = styled.span`
   color: #fff;
   background-color: rgba(0, 0, 0, 0.8);
   animation: ${slideUp} 4s forwards;
+  a {
+    margin-left: 10px;
+  }
 `;
