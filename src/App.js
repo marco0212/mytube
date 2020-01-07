@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { ThemeProvider } from "styled-components";
+import styled, { ThemeProvider, keyframes } from "styled-components";
 import Theme from "./Style/Theme";
 import { GlobalStyles } from "./Style/GlobalStyles";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
@@ -21,6 +21,7 @@ firebase.initializeApp(config);
 export default function App() {
   const [activeMenu, setActiveMenu] = useState(false);
   const [watchLaterVideos, setWatchLaterVideos] = useState(null);
+  const [notificationMessage, setNotificationMessage] = useState("");
 
   useEffect(() => {
     firebase
@@ -56,17 +57,23 @@ export default function App() {
       .ref(`/watchlater/${id}`)
       .remove()
       .then(() => {
-        notification("동영상 목록에서 제거");
+        notification("나중에 볼 동영상 목록에서 제거");
       });
   }
   function notification(message) {
-    alert(message);
+    setNotificationMessage(message);
+    setTimeout(() => {
+      setNotificationMessage("");
+    }, 4000);
   }
 
   return (
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Router>
+        {notificationMessage && (
+          <Notification>{notificationMessage}</Notification>
+        )}
         <Route
           path="/"
           render={props => (
@@ -105,3 +112,31 @@ export default function App() {
     </ThemeProvider>
   );
 }
+
+const slideUp = keyframes`
+0% {
+  opacity: 0;
+  bottom: 0;
+}
+10% {
+  opacity: 1;
+  bottom: 20px;
+}
+90% {
+  bottom: 20px;
+}
+100% {
+  bottom: -60px;
+}
+`;
+const Notification = styled.span`
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  font-size: 14px;
+  line-height: 40px;
+  padding: 0 30px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.8);
+  animation: ${slideUp} 4s forwards;
+`;
