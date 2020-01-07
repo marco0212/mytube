@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { publishedTransformer, viewCountAddComma } from "../functions";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 import LoadingBox from "./LoadingBox";
 
 export default function WatchMain({ watchVideo }) {
@@ -29,11 +31,19 @@ export default function WatchMain({ watchVideo }) {
         <WatchVideoTextArea>
           <div>
             <VideoTitle>{watchVideo.snippet.title}</VideoTitle>
-            <span>
-              {`조회수 ${viewCountAddComma(
-                watchVideo.statistics.viewCount
-              )} 회 • ${publishedTransformer(watchVideo.snippet.publishedAt)}`}
-            </span>
+            <VideoUtilArea>
+              <span>
+                {`조회수 ${viewCountAddComma(
+                  watchVideo.statistics.viewCount
+                )} 회 • ${publishedTransformer(
+                  watchVideo.snippet.publishedAt
+                )}`}
+              </span>
+              <button>
+                <FontAwesomeIcon icon={faList} />
+                보관함에 저장
+              </button>
+            </VideoUtilArea>
           </div>
           <div>
             <p>{watchVideo.snippet.description}</p>
@@ -75,8 +85,27 @@ const WatchVideoTextArea = styled.div`
 `;
 const VideoTitle = styled.h3`
   color: ${props => props.theme.blackColor};
-  font-weight: bold;
   font-size: 18px;
   line-height: 24px;
   margin-bottom: 10px;
+`;
+const VideoUtilArea = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: ${props => props.theme.lightBlackColor};
+  button {
+    background-color: ${props => props.theme.pointColor};
+    border-radius: ${props => props.theme.borderRadius};
+    line-height: 21px;
+    overflow: hidden;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    border: 0;
+    font-size: 14px;
+    svg {
+      margin-right: 10px;
+    }
+  }
 `;
