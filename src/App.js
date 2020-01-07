@@ -14,8 +14,6 @@ import WatchLater from "./Route/WatchLater";
 const config = {
   apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
   authDomain: "mytube-c3e3a.firebaseapp.com",
-  apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
-  authDomain: "mytube-c3e3a.firebaseapp.com",
   databaseURL: "https://mytube-c3e3a.firebaseio.com"
 };
 firebase.initializeApp(config);
