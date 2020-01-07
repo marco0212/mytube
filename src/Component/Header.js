@@ -3,13 +3,7 @@ import styled from "styled-components";
 import Logo from "../asset/logo.svg";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faHistory,
-  faClock,
-  faThumbsUp,
-  faHome
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faClock, faHome } from "@fortawesome/free-solid-svg-icons";
 
 export default function Header({ history, activeMenu, setActiveMenu }) {
   const [inputValue, setInputValue] = useState("");
@@ -66,18 +60,8 @@ export default function Header({ history, activeMenu, setActiveMenu }) {
             </Link>
           </li>
           <li>
-            <Link to="/recent">
-              <FontAwesomeIcon icon={faHistory} /> Recently Watched
-            </Link>
-          </li>
-          <li>
             <Link to="/watchlater">
               <FontAwesomeIcon icon={faClock} /> Watch Later
-            </Link>
-          </li>
-          <li>
-            <Link to="/">
-              <FontAwesomeIcon icon={faThumbsUp} /> Liked Videos
             </Link>
           </li>
         </MenuArea>
