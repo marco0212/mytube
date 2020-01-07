@@ -47,13 +47,22 @@ export default function App() {
     return firebase
       .database()
       .ref()
-      .update(updates);
+      .update(updates)
+      .then(() => {
+        notification("나중에 볼 동영상에 저장");
+      });
   }
   function removeWatchLaterItem(id) {
     return firebase
       .database()
       .ref(`/watchlater/${id}`)
-      .remove();
+      .remove()
+      .then(() => {
+        notification("동영상 목록에서 제거");
+      });
+  }
+  function notification(message) {
+    alert(message);
   }
 
   return (
