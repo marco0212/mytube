@@ -41,7 +41,7 @@ export default function WatchMain({ watchVideo, saveWatchLaterItem }) {
               </span>
               <button onClick={saveWatchLaterItem.bind(null, watchVideo)}>
                 <FontAwesomeIcon icon={faList} />
-                보관함에 저장
+                나중에 볼 동영상 저장
               </button>
             </VideoUtilArea>
           </div>

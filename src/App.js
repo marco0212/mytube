@@ -26,7 +26,7 @@ export default function App() {
     var newItemKey = firebase
       .database()
       .ref()
-      .child("posts")
+      .child("watchlater")
       .push().key;
     var updates = {};
     updates["/watchlater/" + newItemKey] = data;
