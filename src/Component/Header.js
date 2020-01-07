@@ -71,7 +71,7 @@ export default function Header({ history, activeMenu, setActiveMenu }) {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/watchlater">
               <FontAwesomeIcon icon={faClock} /> Watch Later
             </Link>
           </li>

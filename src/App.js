@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ThemeProvider } from "styled-components";
 import Theme from "./Style/Theme";
 import { GlobalStyles } from "./Style/GlobalStyles";
@@ -9,6 +9,7 @@ import Search from "./Route/Search";
 import Header from "./Component/Header";
 import * as firebase from "firebase/app";
 import "firebase/database";
+import WatchLater from "./Route/WatchLater";
 
 const config = {
   apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
@@ -21,6 +22,17 @@ firebase.initializeApp(config);
 
 export default function App() {
   const [activeMenu, setActiveMenu] = useState(false);
+  const [watchLaterVideos, setWatchLaterVideos] = useState(null);
+
+  useEffect(() => {
+    firebase
+      .database()
+      .ref("/")
+      .on("value", snapshot => {
+        const { watchlater } = snapshot.val();
+        setWatchLaterVideos(Object.values(watchlater));
+      });
+  }, []);
 
   function saveWatchLaterItem(data) {
     var newItemKey = firebase
@@ -64,6 +76,10 @@ export default function App() {
             )}
           />
           <Route path="/search/:keyword" component={Search} />
+          <Route
+            path="/watchlater"
+            render={() => <WatchLater watchLaterVideos={watchLaterVideos} />}
+          />
         </Switch>
       </Router>
     </ThemeProvider>
