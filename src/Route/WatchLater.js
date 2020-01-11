@@ -7,7 +7,7 @@ export default function WatchLater(props) {
 
   useEffect(() => {
     setActiveMenu(false);
-  }, [setActiveMenu]);
+  });
 
   return (
     <Container>

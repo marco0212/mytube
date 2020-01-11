@@ -20,11 +20,12 @@ export default function Home({ setActiveMenu }) {
 
   useEffect(() => {
     setActiveMenu(false);
-  }, [setActiveMenu]);
+    fetchingPopularVideo(currentRegion);
+  }, [currentRegion]);
 
-  useEffect(() => {
+  function fetchingPopularVideo(regionCode) {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${regionCode}&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
@@ -32,7 +33,7 @@ export default function Home({ setActiveMenu }) {
         setToken(nextPageToken);
         setPopularVideos(items);
       });
-  }, [currentRegion]);
+  }
 
   function fetcingNextPage() {
     setIsFetching(true);

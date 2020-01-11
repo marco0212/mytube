@@ -22,6 +22,10 @@ export default function VideoBox(props) {
   } = props;
 
   useEffect(() => {
+    getChannelThumbnail();
+  }, []);
+
+  function getChannelThumbnail() {
     if (channelId) {
       fetch(
         `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${YOUTUBE_API_KEY}`
@@ -38,7 +42,7 @@ export default function VideoBox(props) {
           setChannelThumbnail(url);
         });
     }
-  }, [channelId]);
+  }
   return (
     <Box>
       <Link to={`/watch/${id}`}>

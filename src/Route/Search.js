@@ -8,14 +8,19 @@ export default function Watch(props) {
     [searchedVideo, setSearchedVideo] = useState(null);
 
   useEffect(() => {
+    fetchingSearchVideos(keyword);
+  }, [keyword]);
+
+  function fetchingSearchVideos(dependency) {
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${keyword}&type=video&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${dependency}&type=video&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
         setSearchedVideo(jsondata.items);
       });
-  }, [keyword]);
+  }
+
   return (
     <Container>
       <RowVideoList videos={searchedVideo} />

@@ -27,6 +27,10 @@ export default function App() {
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
+    getWatchLaterItems();
+  }, []);
+
+  function getWatchLaterItems() {
     firebase
       .database()
       .ref("/")
@@ -38,15 +42,17 @@ export default function App() {
           setWatchLaterVideos([]);
         }
       });
-  }, []);
+  }
 
   function saveWatchLaterItem(data) {
-    var updates = {};
+    const updates = {};
+
     updates["/watchlater/" + data.id] = {
       ...data,
       id: { videoId: data.id }
     };
-    return firebase
+
+    firebase
       .database()
       .ref()
       .update(updates)
@@ -54,8 +60,9 @@ export default function App() {
         callNotification("나중에 볼 동영상에 저장", true);
       });
   }
+
   function removeWatchLaterItem(id) {
-    return firebase
+    firebase
       .database()
       .ref(`/watchlater/${id}`)
       .remove()
@@ -63,6 +70,7 @@ export default function App() {
         callNotification("나중에 볼 동영상 목록에서 제거");
       });
   }
+
   function callNotification(message, addLink = false) {
     setNotification({ message, addLink });
     setTimeout(() => {

@@ -16,6 +16,7 @@ export default function Notification({ notification }) {
     </NotificationBox>
   );
 }
+
 const slideUp = keyframes`
 0% {
   opacity: 0;

@@ -11,22 +11,29 @@ export default function Watch(props) {
     [relateVideos, setRelateVideos] = useState(null);
 
   useEffect(() => {
+    fetchingMainVideo(id);
+    fetchingRelatedVideos(id);
+  }, [id]);
+
+  function fetchingMainVideo(videoId) {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${videoId}&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
         setWatchVideo(jsondata.items[0]);
       });
+  }
 
+  function fetchingRelatedVideos(videoId) {
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${YOUTUBE_API_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${videoId}&type=video&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
         setRelateVideos(jsondata.items);
       });
-  }, [id]);
+  }
 
   return (
     <Container>
