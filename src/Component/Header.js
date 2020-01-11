@@ -5,8 +5,9 @@ import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faClock, faHome } from "@fortawesome/free-solid-svg-icons";
 
-export default function Header({ history, activeMenu, setActiveMenu }) {
-  const [inputValue, setInputValue] = useState("");
+export default function Header(props) {
+  const { history, activeMenu, setActiveMenu } = props,
+    [inputValue, setInputValue] = useState("");
 
   function inputSubmitHandler(e) {
     if (e.which === 13) {
@@ -23,11 +24,7 @@ export default function Header({ history, activeMenu, setActiveMenu }) {
     <>
       <HeaderWrap>
         <Container>
-          <button
-            onClick={() => {
-              setActiveMenu(!activeMenu);
-            }}
-          >
+          <button onClick={setActiveMenu.bind(null, !activeMenu)}>
             <FontAwesomeIcon icon={faBars} />
           </button>
           <h1>
@@ -69,11 +66,7 @@ export default function Header({ history, activeMenu, setActiveMenu }) {
           <p>&copy; 2020 MyTube</p>
         </CopyArea>
       </Aside>
-      <Overlay
-        onClick={() => {
-          setActiveMenu(!activeMenu);
-        }}
-      />
+      <Overlay onClick={setActiveMenu.bind(null, !activeMenu)} />
     </>
   );
 }

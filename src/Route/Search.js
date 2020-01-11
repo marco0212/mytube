@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
+import RowVideoList from "../Component/RowVideoList";
 import { YOUTUBE_API_KEY } from "../API_KEY";
-import SearchVideoList from "../Component/SearchVideoList";
 
 export default function Watch(props) {
-  const keyword = props.match.params.keyword;
-  const [searchedVideo, setSearchedVideo] = useState(null);
+  const keyword = props.match.params.keyword,
+    [searchedVideo, setSearchedVideo] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -18,7 +18,7 @@ export default function Watch(props) {
   }, [keyword]);
   return (
     <Container>
-      <SearchVideoList videos={searchedVideo} />
+      <RowVideoList videos={searchedVideo} />
     </Container>
   );
 }

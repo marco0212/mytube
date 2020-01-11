@@ -4,10 +4,11 @@ import { YOUTUBE_API_KEY } from "../API_KEY";
 import WatchAside from "../Component/WatchAside";
 import WatchMain from "../Component/WatchMain";
 
-export default function Watch({ match, saveWatchLaterItem }) {
-  const id = match.params.id;
-  const [watchVideo, setWatchVideo] = useState(null);
-  const [relateVideos, setRelateVideos] = useState(null);
+export default function Watch(props) {
+  const { match, saveWatchLaterItem } = props,
+    id = match.params.id,
+    [watchVideo, setWatchVideo] = useState(null),
+    [relateVideos, setRelateVideos] = useState(null);
 
   useEffect(() => {
     fetch(
@@ -17,6 +18,7 @@ export default function Watch({ match, saveWatchLaterItem }) {
       .then(jsondata => {
         setWatchVideo(jsondata.items[0]);
       });
+
     fetch(
       `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${YOUTUBE_API_KEY}`
     )
@@ -25,6 +27,7 @@ export default function Watch({ match, saveWatchLaterItem }) {
         setRelateVideos(jsondata.items);
       });
   }, [id]);
+
   return (
     <Container>
       <WatchMain

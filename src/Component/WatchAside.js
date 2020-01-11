@@ -5,6 +5,7 @@ import LoadingBox from "./LoadingBox";
 
 export default function WatchAside({ relateVideos }) {
   const [isLoading, setIsLoading] = useState(true);
+  const dummyLoadingBox = Array(4).fill(null);
 
   useEffect(() => {
     if (relateVideos) setIsLoading(false);
@@ -13,9 +14,7 @@ export default function WatchAside({ relateVideos }) {
   return (
     <Aside>
       {isLoading
-        ? Array(4)
-            .fill("")
-            .map((x, i) => <LoadingBox channelThumbnail key={i} />)
+        ? dummyLoadingBox.map((x, i) => <LoadingBox channelThumbnail key={i} />)
         : relateVideos.map(video => {
             const {
               id: { videoId },

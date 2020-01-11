@@ -21,6 +21,7 @@ export default function Home({ setActiveMenu }) {
   useEffect(() => {
     setActiveMenu(false);
   }, [setActiveMenu]);
+
   useEffect(() => {
     fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&key=${YOUTUBE_API_KEY}`
@@ -33,7 +34,7 @@ export default function Home({ setActiveMenu }) {
       });
   }, [currentRegion]);
 
-  const fetcingNextPage = () => {
+  function fetcingNextPage() {
     setIsFetching(true);
     fetch(
       `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&pageToken=${token}&key=${YOUTUBE_API_KEY}`
@@ -45,17 +46,13 @@ export default function Home({ setActiveMenu }) {
         setPopularVideos([...popularVideos, ...items]);
         setIsFetching(false);
       });
-  };
+  }
 
   return (
     <Container>
       <HeadingArea>
         <Heading>Most popular videos</Heading>
-        <button
-          onClick={() => {
-            setIsConfig(!isConfig);
-          }}
-        >
+        <button onClick={setIsConfig.bind(null, !isConfig)}>
           <CogIcon icon={faCog} />
         </button>
       </HeadingArea>
@@ -65,9 +62,7 @@ export default function Home({ setActiveMenu }) {
             <li
               key={region.regionCode}
               className={currentRegion === region.regionCode ? "current" : ""}
-              onClick={() => {
-                setCurrentRegion(region.regionCode);
-              }}
+              onClick={setCurrentRegion.bind(null, region.regionCode)}
             >
               {region.countryName}
             </li>

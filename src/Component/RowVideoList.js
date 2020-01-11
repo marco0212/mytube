@@ -6,11 +6,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import LoadingBox from "./LoadingBox";
 
-export default function SearchVideoList({
-  videos,
-  removeWatchLaterItem = null
-}) {
+export default function SearchVideoList(props) {
+  const { videos, removeWatchLaterItem } = props;
   const [isLoading, setIsLoading] = useState(true);
+  const dummyLoadingBox = Array(4).fill(null);
 
   useEffect(() => {
     if (videos) setIsLoading(false);
@@ -19,9 +18,7 @@ export default function SearchVideoList({
   return (
     <GridContainer>
       {isLoading
-        ? Array(4)
-            .fill("")
-            .map((x, i) => <LoadingBox search={true} key={i} />)
+        ? dummyLoadingBox.map((x, i) => <LoadingBox search={true} key={i} />)
         : videos.map(video => {
             const {
               id: { videoId },

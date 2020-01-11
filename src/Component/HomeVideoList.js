@@ -5,6 +5,7 @@ import LoadingBox from "./LoadingBox";
 
 export default function HomeVideoList({ videos }) {
   const [isLoading, setIsLoading] = useState(true);
+  const dummyLoadingBox = Array(6).fill(null);
 
   useEffect(() => {
     if (videos) setIsLoading(false);
@@ -13,9 +14,7 @@ export default function HomeVideoList({ videos }) {
   return (
     <GridContainer>
       {isLoading
-        ? Array(6)
-            .fill("")
-            .map((x, i) => <LoadingBox channelThumbnail key={i} />)
+        ? dummyLoadingBox.map((x, i) => <LoadingBox channelThumbnail key={i} />)
         : videos.map(video => {
             const {
               id,

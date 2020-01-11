@@ -1,12 +1,10 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import SearchVideoList from "../Component/SearchVideoList";
+import RowVideoList from "../Component/RowVideoList";
 
-export default function WatchLater({
-  watchLaterVideos,
-  setActiveMenu,
-  removeWatchLaterItem
-}) {
+export default function WatchLater(props) {
+  const { watchLaterVideos, setActiveMenu, removeWatchLaterItem } = props;
+
   useEffect(() => {
     setActiveMenu(false);
   }, [setActiveMenu]);
@@ -14,7 +12,7 @@ export default function WatchLater({
   return (
     <Container>
       <Heading>Watch Later</Heading>
-      <SearchVideoList
+      <RowVideoList
         videos={watchLaterVideos}
         removeWatchLaterItem={removeWatchLaterItem}
       />

@@ -1,23 +1,3 @@
-export function durationTransformer(duration) {
-  const result = [];
-  duration.split("").forEach((s, i, arr) => {
-    let start = 0,
-      end = 1;
-    if (!isNaN(s)) {
-      start = i;
-      if (!isNaN(arr[i + 1])) {
-        end = 2;
-      }
-      result.push(arr.splice(start, end).join(""));
-    }
-  });
-  const lastIndex = result.length - 1;
-
-  if (Number(result[lastIndex]) < 10)
-    result[lastIndex] = "0" + result[lastIndex];
-
-  return result.join(":");
-}
 export function publishedTransformer(date) {
   const publishedAt = new Date(date),
     year = publishedAt.getFullYear(),
@@ -50,6 +30,26 @@ export function viewCountTransformer(count) {
   if (tenThousand) return `${tenThousand}만회`;
   if (thousand) return `${thousand}천회`;
   return count;
+}
+export function durationTransformer(duration) {
+  const result = [];
+  duration.split("").forEach((s, i, arr) => {
+    let start = 0,
+      end = 1;
+    if (!isNaN(s)) {
+      start = i;
+      if (!isNaN(arr[i + 1])) {
+        end = 2;
+      }
+      result.push(arr.splice(start, end).join(""));
+    }
+  });
+  const lastIndex = result.length - 1;
+
+  if (Number(result[lastIndex]) < 10)
+    result[lastIndex] = "0" + result[lastIndex];
+
+  return result.join(":");
 }
 export function viewCountAddComma(count) {
   return count.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");

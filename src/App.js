@@ -1,15 +1,14 @@
 import React, { useState, useEffect } from "react";
-import styled, { ThemeProvider, keyframes } from "styled-components";
+import { ThemeProvider } from "styled-components";
 import Theme from "./Style/Theme";
 import { GlobalStyles } from "./Style/GlobalStyles";
-import { HashRouter as Router, Route, Switch, Link } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "./Route/Home";
 import Watch from "./Route/Watch";
 import Search from "./Route/Search";
 import Header from "./Component/Header";
 import WatchLater from "./Route/WatchLater";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import Notification from "./Component/Notification";
 import { FIREBASE_API_KEY } from "./API_KEY";
 import * as firebase from "firebase/app";
 import "firebase/database";
@@ -34,7 +33,7 @@ export default function App() {
       .on("value", snapshot => {
         if (snapshot.val()) {
           const { watchlater } = snapshot.val();
-          setWatchLaterVideos(Object.values(watchlater).reverse());
+          setWatchLaterVideos(Object.values(watchlater));
         } else {
           setWatchLaterVideos([]);
         }
@@ -75,16 +74,7 @@ export default function App() {
     <ThemeProvider theme={Theme}>
       <GlobalStyles />
       <Router>
-        {notification && (
-          <Notification>
-            {notification.message}
-            {notification.addLink && (
-              <Link to="/watchlater">
-                <FontAwesomeIcon icon={faExternalLinkAlt} />
-              </Link>
-            )}
-          </Notification>
-        )}
+        {notification && <Notification notification={notification} />}
         <Route
           path="/"
           render={props => (
@@ -123,36 +113,3 @@ export default function App() {
     </ThemeProvider>
   );
 }
-
-const slideUp = keyframes`
-0% {
-  opacity: 0;
-  bottom: 0;
-}
-10% {
-  opacity: 1;
-  bottom: 20px;
-}
-90% {
-  bottom: 20px;
-}
-100% {
-  bottom: -60px;
-}
-`;
-const Notification = styled.span`
-  display: flex;
-  align-items: center;
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-  font-size: 14px;
-  line-height: 40px;
-  padding: 0 30px;
-  color: #fff;
-  background-color: rgba(0, 0, 0, 0.8);
-  animation: ${slideUp} 4s forwards;
-  a {
-    margin-left: 10px;
-  }
-`;

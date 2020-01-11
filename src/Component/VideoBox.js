@@ -8,17 +8,19 @@ import {
 } from "../functions";
 import { YOUTUBE_API_KEY } from "../API_KEY";
 
-export default function VideoBox({
-  id,
-  title,
-  thumbnail,
-  viewCount = "",
-  publishedAt = "",
-  channelId = "",
-  channelTitle = "",
-  duration = ""
-}) {
+export default function VideoBox(props) {
   const [channelThumbnail, setChannelThumbnail] = useState("");
+  const {
+    id,
+    title,
+    thumbnail,
+    viewCount,
+    publishedAt,
+    channelId,
+    channelTitle,
+    duration
+  } = props;
+
   useEffect(() => {
     if (channelId) {
       fetch(
