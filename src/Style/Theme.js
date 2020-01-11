@@ -1,6 +1,3 @@
-const BOX_BORDER = "1px solid #e6e6e6";
-const BORDER_RADIUS = "4px";
-
 export default {
   maxWidth: "980px",
   bgColor: "#f0f1f6",
@@ -11,8 +8,8 @@ export default {
   blueColor: "#3897f0",
   borderGreyColor: "#ebebeb",
   borderRadius: "4px",
-  whiteBox: `border:${BOX_BORDER};
-             border-radius:${BORDER_RADIUS};
+  whiteBox: `border:1px solid #e6e6e6;
+             border-radius:4px;
              background-color:white;
             `
 };

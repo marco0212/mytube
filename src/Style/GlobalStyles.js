@@ -2,13 +2,12 @@ import { createGlobalStyle } from "styled-components";
 import reset from "styled-reset";
 
 export const GlobalStyles = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,600,700');
   ${reset}
   body {
     padding: 90px 0  30px;
     font-size: 14px;
     line-height: 21px;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-family: -apple-system, 'Open Sans', BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
     color: ${props => props.theme.greyColor};
     background-color: ${props => props.theme.bgColor};
   }
