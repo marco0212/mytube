@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { API_KEY } from "../YOUTUBE_KEY";
+import { YOUTUBE_API_KEY } from "../API_KEY";
 import WatchAside from "../Component/WatchAside";
 import WatchMain from "../Component/WatchMain";
 
@@ -11,14 +11,14 @@ export default function Watch({ match, saveWatchLaterItem }) {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=${id}&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
         setWatchVideo(jsondata.items[0]);
       });
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&relatedToVideoId=${id}&type=video&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {

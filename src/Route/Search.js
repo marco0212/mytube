@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { API_KEY } from "../YOUTUBE_KEY";
+import { YOUTUBE_API_KEY } from "../API_KEY";
 import SearchVideoList from "../Component/SearchVideoList";
 
 export default function Watch(props) {
@@ -9,7 +9,7 @@ export default function Watch(props) {
 
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${keyword}&type=video&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/search?part=snippet&q=${keyword}&type=video&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {

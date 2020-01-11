@@ -7,17 +7,19 @@ import Home from "./Route/Home";
 import Watch from "./Route/Watch";
 import Search from "./Route/Search";
 import Header from "./Component/Header";
-import * as firebase from "firebase/app";
-import "firebase/database";
 import WatchLater from "./Route/WatchLater";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faExternalLinkAlt } from "@fortawesome/free-solid-svg-icons";
+import { FIREBASE_API_KEY } from "./API_KEY";
+import * as firebase from "firebase/app";
+import "firebase/database";
 
 const config = {
-  apiKey: "AIzaSyCgDqCS7ucOypwOTxusD7fQMpKPb6covHo",
+  apiKey: FIREBASE_API_KEY,
   authDomain: "mytube-c3e3a.firebaseapp.com",
   databaseURL: "https://mytube-c3e3a.firebaseio.com"
 };
+
 firebase.initializeApp(config);
 
 export default function App() {

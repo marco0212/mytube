@@ -6,7 +6,7 @@ import {
   timeTransformer,
   viewCountTransformer
 } from "../functions";
-import { API_KEY } from "../YOUTUBE_KEY";
+import { YOUTUBE_API_KEY } from "../API_KEY";
 
 export default function VideoBox({
   id,
@@ -22,7 +22,7 @@ export default function VideoBox({
   useEffect(() => {
     if (channelId) {
       fetch(
-        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${API_KEY}`
+        `https://www.googleapis.com/youtube/v3/channels?part=snippet&id=${channelId}&key=${YOUTUBE_API_KEY}`
       )
         .then(response => response.json())
         .then(jsondata => {

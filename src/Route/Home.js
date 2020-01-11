@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { API_KEY } from "../YOUTUBE_KEY";
+import { YOUTUBE_API_KEY } from "../API_KEY";
 import HomeVideoList from "../Component/HomeVideoList";
 import styled, { keyframes } from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -23,7 +23,7 @@ export default function Home({ setActiveMenu }) {
   }, [setActiveMenu]);
   useEffect(() => {
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
@@ -36,7 +36,7 @@ export default function Home({ setActiveMenu }) {
   const fetcingNextPage = () => {
     setIsFetching(true);
     fetch(
-      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&pageToken=${token}&key=${API_KEY}`
+      `https://www.googleapis.com/youtube/v3/videos?part=id,snippet,contentDetails,statistics&chart=mostPopular&maxResults=6&regionCode=${currentRegion}&pageToken=${token}&key=${YOUTUBE_API_KEY}`
     )
       .then(response => response.json())
       .then(jsondata => {
